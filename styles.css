@@ -14,3 +14,18 @@ a:hover {
     background-color: honeydew;
     color: #1E1E1E;
 }
+
+.container {
+    display: flex;
+    gap: 200px;
+}
+
+.letter, .portfolio {
+    flex: 1;
+}
+
+/* We want this in a box */
+.ima_description {
+    background-color: #FAFAFA;
+    padding: 20px;
+}
