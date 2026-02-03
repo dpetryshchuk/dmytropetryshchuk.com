@@ -13,7 +13,7 @@
 :root {
     --color-dark: #212121;
     --color-light: #f3f3f3;
-    --color-accent: #5a7a8a; /* muted blue-gray from the watercolors */
+    --color-accent: #e6ae4f; /* warm golden */
     --font-sans: 'Libre Franklin', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
 }
@@ -115,7 +115,12 @@ main {
 main > h1 {
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+main > h1 .name {
+    color: var(--color-accent);
+    font-size: 1.2em;
 }
 
 main > hr {
@@ -149,6 +154,7 @@ main > hr {
     font-weight: 700;
     text-decoration: none;
     color: var(--color-accent);
+    white-space: nowrap;
 }
 
 .contact a:hover {
@@ -189,16 +195,19 @@ a:focus-visible {
 .explore {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
 }
 
 .explore a {
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 2px;
     color: var(--color-dark);
 }
 
 .explore a:hover {
-    text-decoration: underline;
+    color: var(--color-accent);
 }
 
 .explore a:focus-visible {
