@@ -28,14 +28,14 @@ html {
 
 body {
     min-height: 100vh;
-    background-image: url('sources/imgs/california-desktop.jpg');
+    background-image: url('sources/imgs/sweden-desktop.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-color: var(--color-light);
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
 }
 
@@ -91,11 +91,17 @@ main > hr {
     color: var(--color-dark);
 }
 
+.contact a:focus {
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
 /* Typography */
-h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
-h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; }
-h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-h4 { font-size: 1rem; }
+h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; text-wrap: balance; }
+h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; text-wrap: balance; }
+h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-wrap: balance; }
+h4 { font-size: 1rem; text-wrap: balance; }
 
 /* Links */
 a {
@@ -107,6 +113,12 @@ a {
 
 a:hover {
     color: var(--color-accent);
+}
+
+a:focus {
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 /* Explore section */
@@ -125,6 +137,12 @@ a:hover {
     text-decoration: underline;
 }
 
+.explore a:focus {
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
 /* Navigation (inner pages) */
 nav {
     margin-top: 0.5rem;
@@ -139,6 +157,12 @@ nav a {
 
 nav a:hover {
     color: var(--color-accent);
+}
+
+nav a:focus {
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 nav a::before {
@@ -173,6 +197,12 @@ nav a::before {
 
 .page nav a:hover {
     color: var(--color-accent);
+}
+
+.page nav a:focus {
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 /* Library page */
@@ -227,7 +257,7 @@ nav a::before {
 /* Mobile */
 @media (max-width: 768px) {
     body {
-        background-image: url('sources/imgs/california-mobile.jpg');
+        background-image: url('sources/imgs/sweden-mobile.jpg');
         padding: 1rem;
         align-items: flex-start;
     }
