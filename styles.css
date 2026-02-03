@@ -68,6 +68,25 @@ main {
     overflow-y: auto;
     flex: 1;
     overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.portfolio-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-dark);
 }
 
 .project {
