@@ -1,81 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Head has metadata about the page -->
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="../styles.css">
-        <title>Dmytro Petryshchuk</title>
-    </head>
-    <!-- Body is the rendered content -->
-    <body>
-        <h1>Dmytro Petryshchuk</h1>
-        <a href="../index.html">Home</a>
-        <h2>Ima</h2>
-        <a href="https://ima.dmytropetryshchuk.com">Talk to Ima</a>        
-        <div id="ima_description">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Ima - Dmytro Petryshchuk</title>
+</head>
+<body class="bg-ima">
+    <main class="page">
+        <nav>
+            <a href="../index.html">Home</a>
+        </nav>
+        <h1>Ima</h1>
+        <p><a href="https://ima.dmytropetryshchuk.com">Talk to Ima</a></p>
+
+        <div class="content">
             <p>I love creating experiences.</p>
             <p>Something about building web-apps is so electrifying. Here I am and I can give you an experience that you have access to anywhere in the world on any internet connected device.</p>
             <p><strong>It is magic.</strong></p>
-            <p>If you look above, you'll see a link to Ima. Ima is an npc but I think you can make it so much more.</p>
-            <p>If you suspend your disbelief, just like you'd do in a video game, Ima is a person with emotion, with pain, with confusion.</p>
             <p>Ima helps ask questions that pull out the core of who you are and then casts magic to show you in a way you'll understand.</p>
-            <p>You'll see a map of your past, your present, and a branhcing timeline into your future, if you choose to follow your magic or you don't.</p>
-            <p>It's a tool built from years of trying to understand myself, and learning to iterate, and seek something that's been within me and others since the beginning.</p>
-            <p>The primal inclinations to certain parts of the universe that have been obscured by labels like engineer, analyst, and employee.</p>
-            <p>Ima is an attempt at making an experience that feels unique, here on this canvas of the web-app.</p>
-            <p>Enjoy.</p>
         </div>
-        <a href="../sources/writings/template.html?page=ima_design">Design Document</a>
-        <ul>
-            <li>
-                Resources on building an empathetic AI NPC
-                <ul>
-                    <li>
-                        Paper: Building an Emphatic AI Coach & Agent
-                        (<a href="../papers/Building_an_Emphatic_AI_Coach___Agent.pdf" target="_blank" rel="noopener">PDF</a>, 
-                        <a href="https://github.com/CSC392-CSC492-Building-AI-ML-systems/emphatic-AI-Winter2025" target="_blank" rel="noopener">Github repo</a>)
-                    </li>
-                    <li>
-                        Paper: Informing the design of question-asking conversational agents for reflection
-                        (<a href="https://link.springer.com/article/10.1007/s00779-024-01831-7" target="_blank" rel="noopener">Link</a>)
-                    </li>
-                </ul>
-            </li>
-            <li>
-                Memory system for AI agents: EverMemOS
-                <ul>
-                    <li>
-                        Paper: EverMemOS
-                        (<a href="https://arxiv.org/abs/2601.02163" target="_blank" rel="noopener">Paper on arXiv</a>, 
-                        <a href="../papers/EverMemOSv1.pdf" target="_blank" rel="noopener">Pdf of paper</a>, 
-                        <a href="https://github.com/EverMind-AI/EverMemOS?tab=readme-ov-file" target="_blank" rel="noopener">Github repo</a>)
-                    </li>
-                    <li>
-                        <p>For EverMemOS, they use docker to run 4 databases.</p> 
-                        <ul>
-                            <li>MongoDB to store conversation data, user profiles, and memories</li>
-                            <li>Elasticsearch for searching text rapidly</li>
-                            <li>Milvus for vectorDB</li>
-                            <li>Redis for caching</li>
-                        </ul> 
-                        <p>Realistically, we only need to have one database that stores all of that and lets us search easily</p>
-                        <p>And for Ima, since we're hosting on Railway, we can just use their Redis for caching.</p>
-                        <p>I'm looking at PostgreSql and pgvector which is a PostgreSql extension.
-                    </li>
-                </ul>
-            </li>
-            <li>
-                Previous LLM based game: Intra
-                <ul>
-                    <li>
-                        <a href="https://github.com/ianb/intra-game/tree/main" target="_blank" rel="noopener">Github repo</a>
-                    </li>
-                    <li>
-                        <a href="https://ianbicking.org/blog/2025/07/intra-llm-text-adventure" target="_blank" rel="noopener">Blog post</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        
-    </body>
+
+        <h2>Resources</h2>
+        <p><a href="../sources/writings/template.html?page=ima_design">Design Document</a></p>
+    </main>
+</body>
 </html>

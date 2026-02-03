@@ -1,79 +1,316 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap');
+/* ===========================================
+   Dmytro Petryshchuk - Personal Site
+   =========================================== */
 
-:root {
-    /* Colors */
-    --color-dark: #264653; /* charcoal */
-    --color-light: #F8FFE5; /* light yellow */
-    --color-accent-1: #D7B9D5; /* thistle */
-    --color-accent-2: #002642; /* deep space blue */
-
-    /* Typography */
-    --font-family: 'Lexend', sans-serif;
-    --font-size-body: 1rem;
-    --font-size-h6: 1.25rem;
-    --font-size-h5: 1.563rem;
-    --font-size-h4: 1.953rem;
-    --font-size-h3: 2.441rem;
-    --font-size-h2: 3.052rem;
-    --font-size-h1: 3.815rem;
-
-    --line-height-body: 1.6;
-    --line-height-h6: 1.5;
-    --line-height-h5: 1.4;
-    --line-height-h4: 1.35;
-    --line-height-h3: 1.3;
-    --line-height-h2: 1.2;
-    --line-height-h1: 1.1;
-
-    /* Spacing */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.25rem;
-    --space-6: 1.75rem;
-    --space-7: 2.5rem;
-    --space-8: 3.75rem;
-    --space-9: 6.25rem;
-    --space-10: 10rem;
-    --space-11: 15rem;
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Variables */
+:root {
+    --color-dark: #212121;
+    --color-light: #f3f3f3;
+    --color-accent: #5a7a8a; /* muted blue-gray from the watercolors */
+    --font-sans: 'Libre Franklin', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* Base */
+html {
+    font-family: var(--font-sans);
+    color: var(--color-dark);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
 
 body {
-  background-color: var(--color-light);
-  color: var(--color-dark);
-  font-family: var(--font-family);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
+    min-height: 100vh;
+    background-image: url('sources/imgs/california-desktop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: var(--color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
-h1 { font-size: var(--font-size-h1); line-height: var(--line-height-h1); }
-h2 { font-size: var(--font-size-h2); line-height: var(--line-height-h2); }
-h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
-h4 { font-size: var(--font-size-h4); line-height: var(--line-height-h4); }
-h5 { font-size: var(--font-size-h5); line-height: var(--line-height-h5); }
-h6 { font-size: var(--font-size-h6); line-height: var(--line-height-h6); }
 
+/* Card wrapper */
+.card-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Centered content card */
+main {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Homepage hero */
+main > h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+main > hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 1.5rem 0;
+}
+
+.intro, .bio, .current {
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+.current {
+    margin-bottom: 0;
+}
+
+/* Contact */
+.contact {
+    font-size: 1rem;
+}
+
+.contact p {
+    margin-bottom: 0.4rem;
+}
+
+.contact a {
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+.contact a:hover {
+    color: var(--color-dark);
+}
+
+/* Typography */
+h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; }
+
+/* Links */
 a {
-  color: var(--color-accent-2);
-  text-decoration: none;
+    color: var(--color-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 2px;
 }
 
 a:hover {
-  color: var(--color-accent-1);
+    color: var(--color-accent);
 }
 
-.container {
+/* Portfolio button */
+.portfolio-btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: var(--color-dark);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.15s;
+}
+
+.portfolio-btn:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+/* Drawer - teabag tab style */
+.drawer {
     display: flex;
-    gap: 200px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: -1px;
 }
 
-.letter, .portfolio {
-    flex: 1;
+.drawer-tab {
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    padding: 0.75rem 0.5rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    border-radius: 0 8px 8px 0;
+    line-height: 1.3;
+    text-align: center;
 }
 
-/* We want this in a box */
-.ima_description {
+.drawer-tab:hover {
+    color: var(--color-dark);
+}
+
+.drawer-nav {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-radius: 0 0 8px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease, padding 0.2s ease;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.drawer.open .drawer-nav {
+    max-height: 200px;
+    padding: 0.75rem 1rem;
+}
+
+.drawer-nav a {
+    color: var(--color-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.25rem 0;
+    white-space: nowrap;
+}
+
+.drawer-nav a:hover {
+    color: var(--color-accent);
+}
+
+/* Navigation (inner pages) */
+nav {
+    margin-top: 0.5rem;
+}
+
+nav a {
+    display: block;
+    color: var(--color-dark);
+    text-decoration: none;
+    padding: 0.4rem 0;
+}
+
+nav a:hover {
+    color: var(--color-accent);
+}
+
+nav a::before {
+    content: "→ ";
+    color: var(--color-accent);
+}
+
+/* Inner pages */
+.page p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.page ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.page li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.page nav {
+    margin-bottom: 2rem;
+}
+
+.page nav a {
+    color: var(--color-dark);
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.page nav a:hover {
+    color: var(--color-accent);
+}
+
+/* Library page */
+.library .subtitle {
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.library h2 {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.library h3 {
+    font-size: 1rem;
+    color: #444;
+}
+
+.simple-list, .book-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.book-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Page backgrounds */
+.bg-ima {
+    background-image: url('sources/imgs/basecampmoon-desktop.jpg');
+    background-position: 70% center;
+}
+
+.bg-writings {
+    background-image: url('sources/imgs/finland-desktop.jpg');
+}
+
+.bg-about {
+    background-image: url('sources/imgs/sweden-desktop.jpg');
+}
+
+.bg-light {
+    background-image: none;
     background-color: var(--color-light);
-    padding: 20px;
+}
+
+.bg-light main {
+    background: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    body {
+        background-image: url('sources/imgs/california-mobile.jpg');
+        padding: 1rem;
+        align-items: flex-start;
+    }
+
+    main {
+        padding: 2rem;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .bg-ima {
+        background-image: url('sources/imgs/basecampmoon-mobile.jpg');
+    }
+
+    .bg-writings {
+        background-image: url('sources/imgs/finland-mobile.jpg');
+    }
+
+    .bg-about {
+        background-image: url('sources/imgs/sweden-mobile.jpg');
+    }
 }

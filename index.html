@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Head has metadata about the page -->
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css">
-        <title>Dmytro Petryshchuk</title>
-    </head>
-    <!-- Body is the rendered content -->
-    <body>
-        <h1>Dmytro Petryshchuk</h1>
-        <a href="index.html">Home</a>
-        <!-- Essays, Watercolors, Readings, Listenings, AI Agent Research, Philosophy -->
-        <a href="pages/ima_overview.html">Ima</a>
-        <!-- <a href="sources/writings/writings.html">Writings</a> -->
-        <a href="pages/agentic-development.html">Agentic Development</a>
-        <a href="pages/portfolio.html">Portfolio</a>
-        <div class="container">
-            <div id = "letter">
-                <p>Hey there,</p> 
-                <p>
-                    <strong>Welcome to my personal site.</strong>
-                </p>
-                <p>
-                    My goal is to write as much of this code by hand as possible.
-                </p>
-                <p>
-                    As you can see, it's a work in progress but I'm excited for where it could go. 
-                </p>
-                <p>
-                    I've started seeing the personal site as the 
-                    <strong>equivalent of what the bike is to a car.</strong>
-                </p>
-                <ul>
-                    <li>A tool to represent identity.</li>
-                    <li>A tool that encourages autonomy.</li>
-                    <li>A tool that expresses creativity.</li>
-                </ul>
-                <p>
-                    It becomes a counter to the over-industrialization of the internet.
-                </p>
-                <p>
-                    I'm hoping to host some essays, my thoughts, and we'll see what else.
-                </p>
-                <p>
-                    Thank you for visiting.
-                </p>
-            </div> 
-            <div id="portfolio">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dmytro Petryshchuk</title>
+</head>
+<body>
+    <div class="card-wrapper">
+        <main>
+            <h1>Hey, I'm Dmytro</h1>
 
+            <p class="intro">I'm a technical entrepreneur based in California. No city yet, because I'm looking for my next stable project.</p>
+
+            <p class="bio">I breathe entrepreneurship. My foundations are in computer engineering but what I love is to build experiences. After 3 years working embedded software, I left my last company to build startups.</p>
+
+            <p class="current">Right now, I'm working on <strong>Valandar</strong>, a legal AI company building a Word add-in for contract lawyers.</p>
+
+            <hr>
+
+            <div class="contact">
+                <p><a href="mailto:dmytrodim@gmail.com">dmytrodim@gmail.com</a></p>
+                <p><a href="tel:+12243881333">+1 (224) 388-1333</a></p>
+                <p><a href="https://linkedin.com/in/dpetryshchuk">LinkedIn</a> · <a href="https://github.com/dpetryshchuk">GitHub</a></p>
             </div>
-        </div>
-    </body>
+
+            <hr>
+
+            <a href="pages/portfolio.html" class="portfolio-btn">See my work →</a>
+        </main>
+
+        <aside class="drawer" id="drawer">
+            <button class="drawer-tab" id="drawer-toggle" aria-label="Toggle menu">M<br>O<br>R<br>E</button>
+            <nav class="drawer-nav">
+                <a href="pages/ima_overview.html">Ima</a>
+                <a href="pages/writings.html">Writings</a>
+                <a href="pages/library.html">Library</a>
+            </nav>
+        </aside>
+    </div>
+
+    <script>
+        const drawer = document.getElementById('drawer');
+        const toggle = document.getElementById('drawer-toggle');
+        toggle.addEventListener('click', () => {
+            drawer.classList.toggle('open');
+        });
+    </script>
+</body>
 </html>
