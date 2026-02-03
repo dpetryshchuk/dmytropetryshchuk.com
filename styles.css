@@ -337,6 +337,10 @@ nav a::before {
     background-image: url('sources/imgs/sweden-desktop.jpg');
 }
 
+.bg-library {
+    background-image: url('sources/imgs/california-desktop.jpg');
+}
+
 .bg-light {
     background-image: none;
     background-color: var(--color-light);
@@ -379,5 +383,9 @@ nav a::before {
 
     .bg-about {
         background-image: url('sources/imgs/sweden-mobile.jpg');
+    }
+
+    .bg-library {
+        background-image: url('sources/imgs/california-mobile.jpg');
     }
 }
