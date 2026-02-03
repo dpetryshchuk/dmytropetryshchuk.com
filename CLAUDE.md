@@ -4,39 +4,58 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Architecture
 
-This is a personal website for Dmytro Petryshchuk with two main components:
+Personal website for Dmytro Petryshchuk with two main components:
 
-### 1. Static Website
-- **Root**: Simple HTML/CSS personal site with hand-written code
-- **Structure**: 
-  - `index.html` - Main homepage
-  - `pages/` - Static pages (watercolors, agentic development, etc.)
-  - `sources/writings/` - Writing content and templates
-  - `styles.css` - Global stylesheet with Georgia serif font and aquamarine links
-- **Philosophy**: Minimal, hand-coded approach as "the bike to a car" - emphasizing autonomy and creativity over industrialization
+### 1. Static Website (Root)
+Hand-coded HTML/CSS site - "the bike to a car" philosophy emphasizing autonomy and creativity over frameworks.
 
-### 2. Ima Chatbot (Subdirectory: `ima/`)
-- **Framework**: FastAPI backend with static file serving
-- **AI Integration**: Uses OpenRouter API with Llama 3.3 70B model
-- **Character**: "Ima" - patient, curious AI that asks one question at a time to understand users
-- **Deployment**: Hosted at ima.dmytropetryshchuk.com
+- `index.html` - Main homepage with navigation
+- `pages/` - Static pages (watercolors, agentic-development, ima_overview, portfolio)
+- `sources/writings/` - Markdown content with dynamic template loader
+- `styles.css` - Global styles (Georgia serif, aquamarine links, #FAFAFA background)
 
-## Common Commands
+**Writings Template**: `sources/writings/template.html` loads markdown via query params (`?page=ima_design`) using marked.js CDN.
 
-### Ima Chatbot Development
+### 2. Ima Chatbot (Submodule: `ima/`)
+AI coaching agent that helps users understand themselves through patient, curious questioning.
+
+**Stack**:
+- FastAPI backend (`ima/app/`)
+- PostgreSQL with SQLAlchemy (JSONB for conversation storage)
+- OpenRouter API with Llama 3.3 70B model
+- Static frontend (`ima/static/`)
+
+**Key Files**:
+- `app/main.py` - API endpoints
+- `app/config.py` - System prompts and env config
+- `app/database.py` - Conversation persistence
+- `app/models.py` - SQLAlchemy Conversation model
+
+**API Endpoints**:
+- `POST /chat` - Send message (session_id, message) → AI response
+- `GET /history/{session_id}` - Retrieve conversation history
+- `POST /parse-backstory` - Parse life story text into structured JSON (past/present/future events, themes, projects)
+
+**Deployment**: Railway at ima.dmytropetryshchuk.com
+
+## Commands
+
+### Static Site
+No build process - open HTML files directly or serve with any static server.
+
+### Ima Development
 ```bash
-cd ima
-pip install -r requirements.txt
+cd ima/app
+pip install -r ../requirements.txt
 uvicorn main:app --reload
 ```
 
-### Static Site Development
-The main site is served directly from HTML files - no build process required. Simply open `index.html` in a browser or serve with any static file server.
+### Submodule Setup
+```bash
+git submodule update --init --recursive
+```
 
-## Key Implementation Details
-
-- **Ima API Endpoint**: `/chat` accepts history array and returns AI response
-- **Environment**: Ima requires `OPENROUTER_API_KEY` in `.env` file
-- **Static Assets**: Ima serves frontend from `ima/static/` directory
-- **Styling**: Consistent CSS approach across both main site and Ima interface
-- **Content Management**: Writing templates use query parameters for dynamic content loading
+## Environment Variables (Ima)
+Required in `ima/.env`:
+- `DATABASE_URL` - PostgreSQL connection string
+- `OPENROUTER_API_KEY` - OpenRouter API key

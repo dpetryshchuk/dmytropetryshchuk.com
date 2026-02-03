@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dir \"C:\\Users\\Dima\\Documents\\1. Projects\\dmytropetryshchuk.com\\ima\\static\")"
+      "Bash(dir \"C:\\Users\\Dima\\Documents\\1. Projects\\dmytropetryshchuk.com\\ima\\static\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)"
     ],
     "deny": [],
     "ask": []
