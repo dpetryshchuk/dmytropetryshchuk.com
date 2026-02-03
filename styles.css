@@ -34,19 +34,12 @@ body {
     background-attachment: fixed;
     background-color: var(--color-light);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 2rem;
 }
 
-/* Card wrapper */
-.card-wrapper {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-}
-
-/* Centered content card */
+/* Main card */
 main {
     background: rgba(255, 255, 255, 0.85);
     padding: 3rem;
@@ -66,6 +59,8 @@ main > hr {
     border-top: 1px solid #ddd;
     margin: 1.5rem 0;
 }
+
+
 
 .intro, .bio, .current {
     font-size: 1.05rem;
@@ -114,41 +109,16 @@ a:hover {
     color: var(--color-accent);
 }
 
-/* Portfolio button */
-.portfolio-btn {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background: var(--color-dark);
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background 0.15s;
-}
-
-.portfolio-btn:hover {
-    background: var(--color-accent);
-    color: white;
-}
-
 /* Explore section */
 .explore {
-    margin-top: 1.5rem;
-}
-
-.explore h4 {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-accent);
-    margin-bottom: 0.4rem;
-}
-
-.explore p {
-    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .explore a {
     text-decoration: none;
+    color: var(--color-dark);
 }
 
 .explore a:hover {
