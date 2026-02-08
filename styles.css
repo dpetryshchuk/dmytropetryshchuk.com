@@ -180,6 +180,19 @@ main > hr {
     color: var(--color-dark);
 }
 
+.contact a.email-copy {
+    cursor: pointer;
+}
+
+.contact a.email-copy.copied {
+    color: var(--color-dark);
+    background: var(--color-accent);
+    font-weight: 500;
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    transition: none;
+}
+
 .contact a:focus-visible {
     color: var(--color-accent);
     outline: 2px solid var(--color-accent);

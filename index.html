@@ -20,7 +20,7 @@
         <hr>
 
         <div class="contact">
-            <p>email me: <a href="mailto:dmytrodim@gmail.com">dmytrodim [at] gmail (dot) com</a></p>
+            <p>email me: <a href="mailto:dmytrodim@gmail.com" class="email-copy" onclick="event.preventDefault(); navigator.clipboard.writeText('dmytrodim@gmail.com'); this.dataset.original = this.textContent; this.textContent = 'copied!'; this.classList.add('copied'); setTimeout(() => { this.textContent = this.dataset.original; this.classList.remove('copied'); }, 1500);">dmytrodim [at] gmail (dot) com</a></p>
             <p><a href="https://linkedin.com/in/dpetryshchuk">LinkedIn</a> · <a href="https://github.com/dpetryshchuk">GitHub</a></p>
         </div>
 
@@ -40,15 +40,15 @@
                 <h3>Valandar</h3>
                 <p class="role">Cofounder · Jan 2026 – Present</p>
                 <ul>
-                    <li>Building a legal AI company building a Word add-in for contract lawyers.</li>
+                    <li>Building a legal AI company offering a Word add-in for contract lawyers.</li>
                     <li>Full-stack software built on Python, OpenAI Responses API, Javascript (Word.js API), Django, all on Heroku.</li>
-                    <li>Making it easy for lawyers with mid-size businesses to run contracts through their clause playbooks.</li>
+                    <li>Makes it easy for lawyers at mid-size firms to run contracts through their clause playbooks.</li>
                 </ul>
             </section>
 
             <section class="project">
                 <h3>Fairquanta</h3>
-                <p class="role">Technical Cofounder · Dec 2025 – Present</p>
+                <p class="role">Technical Cofounder · Dec 2025 – Feb 2026</p>
                 <ul>
                     <li>A design-agency aiming to build tools that understand people's states of mind and support them in their goals.</li>
                     <li>Researched and built AI agent based software with LangChain, memory systems (MemOS, EverMemOS), and collaborative filtering.</li>
@@ -71,8 +71,9 @@
                 <h3>Soulprint / Clarity Engine</h3>
                 <p class="role">Founder · Jan 2025 – Present</p>
                 <ul>
-                    <li>Using AI to have deep conversations about your life story reveals patterns and directions you're too close to see yourself.</li>
-                    <li>Interviewed 7 people to help them see their life story from their childhood to their present to what they want out of life. With AI, we mined their story for the core genius insights they have and how to leverage them.</li>
+                    <li>Interviewed people about their past, preset, and aspirations to uncover raw info about the patterns in their lives.</li>
+                    <li>Interviewed 7 people in this way, and with AI, I mined their story for the core patterns and inclinations in the subtext.</li>
+                    <li>Coached biweekly to align with these insigths and integrate.</li>
                 </ul>
             </section>
 
