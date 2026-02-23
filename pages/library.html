@@ -10,70 +10,104 @@
     <title>Library - Dmytro Petryshchuk</title>
 </head>
 <body class="bg-library">
-    <main class="page library">
-        <nav>
-            <a href="../index.html">Home</a>
-        </nav>
-
+    <nav class="top-nav">
+        <a href="../index.html">home</a>
+        <span class="nav-sep">·</span>
+        <a href="writings.html">writings</a>
+        <span class="nav-sep">·</span>
+        <a href="library.html">library</a>
+        <span class="nav-sep">·</span>
+        <a href="watercolors.html">watercolors</a>
+    </nav>
+    <main class="page">
         <h1>Library</h1>
         <p class="subtitle">Books and podcasts I keep coming back to.</p>
 
-        <section>
-            <h2>Podcasts I Love</h2>
-            <ul class="simple-list">
-                <li>Joe Hudson</li>
-                <li>My First Million</li>
-            </ul>
-        </section>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="reading">Books & Podcasts</button>
+            <button class="tab-btn" data-tab="tools">Tools</button>
+        </div>
 
-        <section>
-            <h2>Books</h2>
+        <div class="tab-panel" id="tab-reading">
+            <section>
+                <h2>Podcasts I Love</h2>
+                <ul class="simple-list">
+                    <li>Joe Hudson</li>
+                    <li>My First Million</li>
+                </ul>
+            </section>
 
-            <h3>Philosophy & Spirituality</h3>
-            <ul class="book-list">
-                <li><em>Meditations</em> — Marcus Aurelius</li>
-                <li><em>Siddhartha</em> — Hermann Hesse</li>
-                <li><em>The Little Prince</em> — Antoine de Saint-Exupéry</li>
-                <li><em>Man's Search for Meaning</em> — Viktor Frankl</li>
-                <li><em>The Untethered Soul</em> — Michael Singer</li>
-                <li><em>The Heart of the Buddha's Teachings</em> — Thich Nhat Hanh</li>
-                <li><em>The Way to Love</em> — Anthony de Mello</li>
-            </ul>
+            <section>
+                <h2>Books</h2>
 
-            <h3>Self-Improvement & Psychology</h3>
-            <ul class="book-list">
-                <li><em>7 Habits of Highly Effective People</em> — Stephen Covey</li>
-                <li><em>Psycho-Cybernetics</em> — Maxwell Maltz</li>
-                <li><em>Essentialism</em> — Greg McKeown</li>
-                <li><em>Wishcraft</em> — Barbara Sher</li>
-            </ul>
+                <h3>Philosophy & Spirituality</h3>
+                <ul class="book-list">
+                    <li><em>Meditations</em> — Marcus Aurelius</li>
+                    <li><em>Siddhartha</em> — Hermann Hesse</li>
+                    <li><em>The Little Prince</em> — Antoine de Saint-Exupéry</li>
+                    <li><em>Man's Search for Meaning</em> — Viktor Frankl</li>
+                    <li><em>The Untethered Soul</em> — Michael Singer</li>
+                    <li><em>The Heart of the Buddha's Teachings</em> — Thich Nhat Hanh</li>
+                    <li><em>The Way to Love</em> — Anthony de Mello</li>
+                </ul>
 
-            <h3>Relationships & Communication</h3>
-            <ul class="book-list">
-                <li><em>Models</em> — Mark Manson</li>
-                <li><em>Supercommunicators</em> — Charles Duhigg</li>
-            </ul>
+                <h3>Self-Improvement & Psychology</h3>
+                <ul class="book-list">
+                    <li><em>7 Habits of Highly Effective People</em> — Stephen Covey</li>
+                    <li><em>Psycho-Cybernetics</em> — Maxwell Maltz</li>
+                    <li><em>Essentialism</em> — Greg McKeown</li>
+                    <li><em>Wishcraft</em> — Barbara Sher</li>
+                </ul>
 
-            <h3>Business & Leadership</h3>
-            <ul class="book-list">
-                <li><em>The Mom Test</em> — Rob Fitzpatrick</li>
-                <li><em>Straight Line Leadership</em> — Dusan Djukich</li>
-                <li><em>Rework</em> — Jason Fried & David Heinemeier Hansson</li>
-            </ul>
+                <h3>Relationships & Communication</h3>
+                <ul class="book-list">
+                    <li><em>Models</em> — Mark Manson</li>
+                    <li><em>Supercommunicators</em> — Charles Duhigg</li>
+                </ul>
 
-            <h3>Mastery & Skill</h3>
-            <ul class="book-list">
-                <li><em>Mastery</em> — Robert Greene</li>
-            </ul>
+                <h3>Business & Leadership</h3>
+                <ul class="book-list">
+                    <li><em>The Mom Test</em> — Rob Fitzpatrick</li>
+                    <li><em>Straight Line Leadership</em> — Dusan Djukich</li>
+                    <li><em>Rework</em> — Jason Fried & David Heinemeier Hansson</li>
+                </ul>
 
-            <h3>Fiction & Memoir</h3>
-            <ul class="book-list">
-                <li><em>Three Body Problem Series</em> — Liu Cixin</li>
-                <li><em>The Stormlight Archive</em> — Brandon Sanderson</li>
-                <li><em>When Breath Becomes Air</em> — Paul Kalanithi</li>
-            </ul>
-        </section>
+                <h3>Mastery & Skill</h3>
+                <ul class="book-list">
+                    <li><em>Mastery</em> — Robert Greene</li>
+                </ul>
+
+                <h3>Fiction & Memoir</h3>
+                <ul class="book-list">
+                    <li><em>Three Body Problem Series</em> — Liu Cixin</li>
+                    <li><em>The Stormlight Archive</em> — Brandon Sanderson</li>
+                    <li><em>When Breath Becomes Air</em> — Paul Kalanithi</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="tab-panel" id="tab-tools" hidden>
+            <section>
+                <h2>Agentic Development</h2>
+                <ul class="simple-list">
+                    <li><a href="https://github.com/anthropics/claude-code">Claude Code</a></li>
+                    <li><a href="https://github.com/anthropics/claude-code-sdk-python">Claude Code SDK (Python)</a></li>
+                    <li><a href="https://github.com/obra/superpowers">Superpowers</a></li>
+                </ul>
+            </section>
+        </div>
     </main>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.hidden = true);
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).hidden = false;
+            });
+        });
+    </script>
     <script data-goatcounter="https://dima.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 </body>

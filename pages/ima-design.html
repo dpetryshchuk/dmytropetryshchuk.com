@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Ima: Design Document - Dmytro Petryshchuk</title>
+</head>
+<body class="bg-ima">
+    <nav class="top-nav">
+        <a href="../index.html">home</a>
+        <span class="nav-sep">·</span>
+        <a href="writings.html">writings</a>
+        <span class="nav-sep">·</span>
+        <a href="library.html">library</a>
+        <span class="nav-sep">·</span>
+        <a href="watercolors.html">watercolors</a>
+    </nav>
+    <main class="page">
+        <h1>Ima: Design Document</h1>
+
+        <p>Ima is an AI agent suited for Clarity Engine.</p>
+
+        <h2>Vision</h2>
+        <p>Based on my interest in helping people be seen and feel seen, Ima is designed to be a coach to see and understand a user in an awe-inspiring way. I want Ima to feel like a rich character in a world.</p>
+
+        <h2>User Experience</h2>
+        <p>The basis is that the user should feel like Ima lives on the website. When the user comes back, it should remember how long it's been, and interact in that way. Ima should pull out the user's past life-story, present struggles, and aspirations for the future in a guided way.</p>
+        <p>I think Ima is defined by their Big 5 personality traits.</p>
+
+        <h2>Technological Basis</h2>
+        <ul>
+            <li>EverMemOS for agentic memory that is temporally tracked.</li>
+            <li>An LLM to drive the interactions, maybe fine-tuned.</li>
+            <li>Some sort of personality framework to install Big 5 traits and how the agent should interact.</li>
+        </ul>
+
+        <h2>Future Directions</h2>
+        <p><em>(Written so I don't get distracted.)</em></p>
+        <ul>
+            <li>Some kind of flow for the three spaces: past, present, and future.</li>
+            <li>A visualization of their projects and life events on a timeline for their viewing, and to let them fill things in.</li>
+            <li>Prevent people from throwing the AI off the rails by trying to break it.</li>
+            <li>Kubernetes for each individual using the platform.</li>
+            <li>Store the EverMemOS data in a database. Need to understand MongoDB.</li>
+            <li>UI overhaul.</li>
+        </ul>
+
+        <h2>Current Status</h2>
+        <ul>
+            <li>Ima is hosted on Railway at <a href="https://ima.dmytropetryshchuk.com">ima.dmytropetryshchuk.com</a>.</li>
+            <li>Built with FastAPI.</li>
+            <li>Stores memories as JSON files in local storage.</li>
+            <li>Uses OpenRouter with a free Llama model.</li>
+        </ul>
+    </main>
+    <script data-goatcounter="https://dima.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
