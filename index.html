@@ -13,15 +13,15 @@
     <main>
         <h1>Hey, I'm <span class="name">Dmytro</span></h1>
 
-        <p class="intro">I love creating experiences, and I'm learning what that means for my career, my life, and my passion.</p>
-        
-        <p class="bio">I've fallen in love with business and entrepreneurship. After 3 years of embedded software, I left my last company to build startups.</p>
+        <p class="intro">I build AI automations for small businesses.</p>
+
+        <p class="bio">3 years of embedded software behind me. Now I'm building, exploring, and open to what's next.</p>
 
         <hr>
 
         <div class="contact">
             <p>email me: <a href="mailto:dmytrodim@gmail.com" class="email-copy" onclick="event.preventDefault(); navigator.clipboard.writeText('dmytrodim@gmail.com'); this.dataset.original = this.textContent; this.textContent = 'copied!'; this.classList.add('copied'); setTimeout(() => { this.textContent = this.dataset.original; this.classList.remove('copied'); }, 1500);">dmytrodim [at] gmail (dot) com</a></p>
-            <p><a href="https://linkedin.com/in/dpetryshchuk">LinkedIn</a> · <a href="https://github.com/dpetryshchuk">GitHub</a></p>
+            <p><a href="https://linkedin.com/in/dpetryshchuk">LinkedIn</a> · <a href="https://github.com/dpetryshchuk">GitHub</a> · <a href="sources/Resume.pdf" download>Resume</a></p>
         </div>
 
         <hr>
@@ -37,10 +37,20 @@
         <h2>Stuff I've Done.</h2>
         <div class="portfolio-scroll">
             <section class="project">
-                <h3>Valandar</h3>
-                <p class="role">Cofounder · Jan 2026 – Present</p>
+                <h3>OneKeyFlow</h3>
+                <p class="role">Founder · Feb 2026 – Present</p>
+                <p>AI automation agency building workflow tools for small businesses.</p>
                 <ul>
-                    <li>Building a legal AI company offering a Word add-in for contract lawyers.</li>
+                    <li>Built an event-driven pipeline using n8n, Google Apps Script, and the Anthropic API that cuts quarterly report generation from 30 to 3 minutes per SKU for 70 products.</li>
+                    <li>Integrated CRM and lead capture automation for clients in auto transport.</li>
+                </ul>
+            </section>
+
+            <section class="project">
+                <h3>Valandar</h3>
+                <p class="role">Cofounder · Jan 2026 – Feb 2026</p>
+                <ul>
+                    <li>Built a Word add-in that cut contract review from 6 hours to 20 minutes for 30 documents per month.</li>
                     <li>Full-stack software built on Python, OpenAI Responses API, Javascript (Word.js API), Django, all on Heroku.</li>
                     <li>Makes it easy for lawyers at mid-size firms to run contracts through their clause playbooks.</li>
                 </ul>
@@ -48,14 +58,23 @@
 
             <section class="project">
                 <h3>Fairquanta</h3>
-                <p class="role">Technical Cofounder · Dec 2025 – Feb 2026</p>
+                <p class="role">Researcher and Product Designer · Dec 2025 – Feb 2026</p>
                 <ul>
-                    <li>A design-agency aiming to build tools that understand people's states of mind and support them in their goals.</li>
-                    <li>Researched and built AI agent based software with LangChain, memory systems (MemOS, EverMemOS), and collaborative filtering.</li>
-                    <li>Built with shadcn/React and Supabase/AWS.</li>
-                    <li>Designed UI/UX and refined product philosophy.</li>
+                    <li>Read academic papers across AI memory systems, long-horizon task planning, collaborative filtering, and psychometrics to shape the architecture, UI, and product direction of a team-coordination AI platform.</li>
                 </ul>
             </section>
+
+            <section class="project">
+                <h3>Midtronics</h3>
+                <p class="role">Embedded Software Engineer · May 2023 – Nov 2025</p>
+                <ul>
+                    <li>Built firmware for an EV battery module balancer in C with a 3-person team, from concept to live demo in Japan in 8 months.</li>
+                    <li>Built a suite of internal dev tools including a build deploy manager, ADC monitor, GPIO relay tester, and Jira REST API automation.</li>
+                    <li>Ran AI development workshops for 25 embedded engineers.</li>
+                </ul>
+            </section>
+
+            <h3 class="other-experiments">Other Experiments</h3>
 
             <section class="project">
                 <h3><a href="https://slabfolio.co">Slabfolio</a></h3>
@@ -74,19 +93,6 @@
                     <li>Interviewed people about their past, preset, and aspirations to uncover raw info about the patterns in their lives.</li>
                     <li>Mined their story with AI to find the core patterns and inclinations in the subtext.</li>
                     <li>Coached biweekly to align with these insights and integrate.</li>
-                </ul>
-            </section>
-
-            <section class="project">
-                <h3>Midtronics</h3>
-                <p class="role">Embedded Software Engineer · May 2023 – Nov 2025</p>
-                <ul>
-                    <li>Global leader in automotive battery diagnostics (Ford, Toyota, GM, BMW, Honda, Rivian).</li>
-                    <li>Built high-voltage EV module balancing device, concept to demo in Japan in 8 months.</li>
-                    <li>FreeRTOS firmware, PWM, IGBTs, CAN, sensors.</li>
-                    <li>RF certification work enabling $2M+ in sales.</li>
-                    <li>Interface overhaul that became standards.</li>
-                    <li>Introduced AI-assisted development through workshops.</li>
                 </ul>
             </section>
         </div>
