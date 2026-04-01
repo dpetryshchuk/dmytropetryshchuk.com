@@ -11,12 +11,9 @@
 
 /* Variables */
 :root {
-    --bg:      #18120e;
-    --surface: #221810;
-    --text:    #e0d0bc;
-    --muted:   #7a6555;
-    --accent:  #c4781a;
-    --border:  rgba(255, 255, 255, 0.08);
+    --color-dark: #212121;
+    --color-light: #f3f3f3;
+    --color-accent: #c4781a; /* warm amber */
     --font-sans: 'Libre Franklin', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
 }
@@ -24,14 +21,18 @@
 /* Base */
 html {
     font-family: var(--font-sans);
-    color: var(--text);
+    color: var(--color-dark);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
 
 body {
     min-height: 100vh;
-    background: var(--bg);
+    background-image: url('sources/imgs/sweden-desktop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: var(--color-light);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,16 +40,9 @@ body {
     padding: 3.5rem 2rem 2rem;
 }
 
-/* Inner page bodies — override homepage flex centering */
-.bg-ima, .bg-writings, .bg-about, .bg-library, .bg-light {
-    background: var(--bg);
-    display: block;
-    padding: 0;
-}
-
 /* Main card */
 main {
-    background: var(--surface);
+    background: rgba(255, 255, 255, 0.85);
     padding: 3rem;
     max-width: 600px;
     width: 100%;
@@ -56,7 +50,7 @@ main {
 
 /* Portfolio panel */
 .portfolio {
-    background: var(--surface);
+    background: rgba(255, 255, 255, 0.85);
     padding: 3rem;
     max-width: 600px;
     width: 100%;
@@ -72,9 +66,17 @@ main {
     bottom: 3rem;
     left: 0;
     right: 0;
-    height: 5rem;
-    background: linear-gradient(to bottom, transparent, var(--surface));
+    height: 4rem;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.85));
     pointer-events: none;
+}
+
+.portfolio-hint {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    margin-top: -1rem;
+    margin-bottom: 1rem;
 }
 
 .portfolio > h2 {
@@ -87,14 +89,26 @@ main {
     flex: 1;
     overscroll-behavior: contain;
     scrollbar-width: thin;
-    scrollbar-color: var(--accent) transparent;
+    scrollbar-color: var(--color-accent) transparent;
     padding-bottom: 5rem;
 }
 
-.portfolio-scroll::-webkit-scrollbar { width: 4px; }
-.portfolio-scroll::-webkit-scrollbar-track { background: transparent; }
-.portfolio-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-.portfolio-scroll::-webkit-scrollbar-thumb:hover { background: var(--text); }
+.portfolio-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.portfolio-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-dark);
+}
 
 .project {
     margin-bottom: 2rem;
@@ -110,11 +124,16 @@ main {
 }
 
 .project .role {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 400;
-    color: var(--accent);
+    color: var(--color-accent);
     margin-bottom: 0.5rem;
     font-variant-numeric: tabular-nums;
+}
+
+.project p {
+    line-height: 1.6;
+    margin-bottom: 0;
 }
 
 .project ul {
@@ -126,21 +145,10 @@ main {
     line-height: 1.6;
     margin-bottom: 0.4rem;
     overflow-wrap: break-word;
-    color: var(--muted);
 }
 
 .project li:last-child {
     margin-bottom: 0;
-}
-
-.other-experiments {
-    color: var(--muted);
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 400;
-    margin: 2.5rem 0 1.5rem;
 }
 
 /* Homepage hero */
@@ -151,24 +159,22 @@ main > h1 {
 }
 
 main > h1 .name {
-    color: var(--accent);
+    color: var(--color-accent);
     font-size: 1.2em;
 }
 
 main > hr {
     border: none;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #ddd;
     margin: 1.5rem 0;
 }
+
+
 
 .intro, .bio, .current {
     font-size: 1.05rem;
     margin-bottom: 1.25rem;
     line-height: 1.6;
-}
-
-.bio {
-    color: var(--muted);
 }
 
 .current {
@@ -182,18 +188,17 @@ main > hr {
 
 .contact p {
     margin-bottom: 0.4rem;
-    color: var(--muted);
 }
 
 .contact a {
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    color: var(--accent);
+    color: var(--color-accent);
     white-space: nowrap;
 }
 
 .contact a:hover {
-    color: var(--text);
+    color: var(--color-dark);
 }
 
 .contact a.email-copy {
@@ -201,40 +206,41 @@ main > hr {
 }
 
 .contact a.email-copy.copied {
-    color: var(--bg);
-    background: var(--accent);
+    color: white;
+    background: var(--color-accent);
     font-weight: 500;
     padding: 0.1em 0.4em;
-    border-radius: 2px;
+    border-radius: 3px;
     transition: none;
 }
 
 .contact a:focus-visible {
-    outline: 2px solid var(--accent);
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
 
 /* Typography */
 h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; text-wrap: balance; }
-h2 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; text-wrap: balance; }
-h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-wrap: balance; }
+h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; text-wrap: balance; }
+h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-wrap: balance; }
 h4 { font-size: 1rem; text-wrap: balance; }
 
 /* Links */
 a {
-    color: var(--text);
+    color: var(--color-dark);
     text-decoration: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--color-accent);
     text-underline-offset: 2px;
 }
 
 a:hover {
-    color: var(--accent);
+    color: var(--color-accent);
 }
 
 a:focus-visible {
-    color: var(--accent);
-    outline: 2px solid var(--accent);
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
 
@@ -245,10 +251,10 @@ a:focus-visible {
     left: 0;
     right: 0;
     z-index: 50;
-    background: rgba(24, 18, 14, 0.95);
+    background: rgba(250, 250, 250, 0.95);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e0e0e0;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -256,43 +262,32 @@ a:focus-visible {
 }
 
 .top-nav a {
-    color: var(--muted);
+    color: var(--color-dark);
     text-decoration: none;
-    border-bottom: 1px solid #4a3828;
+    border-bottom: 1px solid var(--color-accent);
     padding-bottom: 1px;
 }
 
 .top-nav a:hover {
-    color: var(--text);
-    border-bottom-color: var(--accent);
+    color: var(--color-accent);
 }
 
 .top-nav a:focus-visible {
-    outline: 2px solid var(--accent);
+    color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
 
 .nav-sep {
-    color: #3a2a1e;
+    color: #bbb;
     padding: 0 0.5rem;
     user-select: none;
 }
 
 /* Inner pages */
-.page {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 5rem 2rem 6rem;
-}
-
 .page p {
     margin-bottom: 1rem;
-    line-height: 1.7;
-    color: var(--muted);
-}
-
-.page h1, .page h2, .page h3 {
-    color: var(--text);
+    line-height: 1.6;
 }
 
 .page ul {
@@ -302,24 +297,15 @@ a:focus-visible {
 
 .page li {
     margin-bottom: 0.5rem;
-    line-height: 1.6;
-    color: var(--muted);
+    line-height: 1.5;
 }
 
-.page a {
-    color: var(--accent);
-    text-decoration-color: var(--accent);
-}
-
-.page a:hover {
-    color: var(--text);
-}
 
 /* Library page */
 .page .subtitle {
     font-style: italic;
     margin-bottom: 2rem;
-    color: var(--muted);
+    color: #666;
 }
 
 .simple-list, .book-list {
@@ -331,10 +317,37 @@ a:focus-visible {
     margin-bottom: 0.5rem;
 }
 
+/* Page backgrounds */
+.bg-ima {
+    background-image: url('sources/imgs/basecampmoon-desktop.jpg');
+    background-position: 70% center;
+}
+
+.bg-writings {
+    background-image: url('sources/imgs/finland-desktop.jpg');
+}
+
+.bg-about {
+    background-image: url('sources/imgs/sweden-desktop.jpg');
+}
+
+.bg-library {
+    background-image: url('sources/imgs/california-desktop.jpg');
+}
+
+.bg-light {
+    background-image: none;
+    background-color: var(--color-light);
+}
+
+.bg-light main {
+    background: white;
+}
+
 /* Tabs */
 .tabs {
     display: flex;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid #e0e0e0;
     margin-bottom: 2rem;
 }
 
@@ -342,11 +355,11 @@ a:focus-visible {
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
+    margin-bottom: -2px;
     padding: 0.5rem 1.25rem 0.5rem 0;
     font-family: var(--font-sans);
-    font-size: 0.9rem;
-    color: var(--muted);
+    font-size: 0.95rem;
+    color: #999;
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s;
 }
@@ -356,18 +369,19 @@ a:focus-visible {
 }
 
 .tab-btn.active {
-    color: var(--text);
-    border-bottom-color: var(--accent);
+    color: var(--color-dark);
+    border-bottom-color: var(--color-accent);
     font-weight: 600;
 }
 
 .tab-btn:hover:not(.active) {
-    color: var(--text);
+    color: var(--color-dark);
 }
 
 /* Mobile */
 @media (max-width: 768px) {
     body {
+        background-image: url('sources/imgs/sweden-mobile.jpg');
         padding: 3rem 1rem 1rem;
         align-items: flex-start;
         flex-direction: column;
@@ -392,7 +406,19 @@ a:focus-visible {
         display: none;
     }
 
-    .page {
-        padding: 4rem 1.5rem 4rem;
+    .bg-ima {
+        background-image: url('sources/imgs/basecampmoon-mobile.jpg');
+    }
+
+    .bg-writings {
+        background-image: url('sources/imgs/finland-mobile.jpg');
+    }
+
+    .bg-about {
+        background-image: url('sources/imgs/sweden-mobile.jpg');
+    }
+
+    .bg-library {
+        background-image: url('sources/imgs/california-mobile.jpg');
     }
 }
