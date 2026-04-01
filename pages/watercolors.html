@@ -9,73 +9,110 @@
     <link rel="stylesheet" href="../styles.css">
     <title>Watercolors - Dmytro Petryshchuk</title>
     <style>
-        .g-grid {
+        body {
+            background: #18120e;
+            background-image: none;
+            min-height: 100vh;
+            display: block;
+            padding: 0;
+        }
+
+        .top-nav {
+            background: rgba(18, 12, 8, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .top-nav a {
+            color: #a89880;
+            border-bottom-color: #6b4f38;
+        }
+
+        .top-nav a:hover {
+            color: #e8d8c4;
+        }
+
+        .nav-sep {
+            color: #4a3828;
+        }
+
+        .gallery-header {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+        }
+
+        .gallery-header h1 {
+            font-size: 1rem;
+            font-family: var(--font-mono);
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #6b5540;
+            margin: 0;
+        }
+
+        .gallery {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
+            gap: 4rem 3rem;
         }
 
-        @media (max-width: 768px) {
-            .g-grid {
-                grid-template-columns: 1fr;
-            }
+        figure {
+            margin: 0;
         }
 
-        .g-item {
-            display: flex;
-            flex-direction: column;
+        .mat {
+            background: #f5f0e8;
+            padding: 1.5rem;
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.3),
+                0 8px 32px rgba(0,0,0,0.5),
+                0 24px 64px rgba(0,0,0,0.4);
         }
 
-        .g-frame {
-            background: #f8f3ec;
-            padding: 1.1rem;
-            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            line-height: 0;
-        }
-
-        .g-frame img {
+        .mat img {
             display: block;
             width: 100%;
-            height: 280px;
+            height: 300px;
             object-fit: cover;
             cursor: zoom-in;
         }
 
-        .g-caption {
+        figcaption {
+            margin-top: 1.25rem;
             display: flex;
             align-items: baseline;
             gap: 0.75rem;
-            padding: 0.85rem 0 0;
         }
 
         .g-num {
             font-family: var(--font-mono);
-            font-size: 0.68rem;
-            color: #3a3a3a;
+            font-size: 0.65rem;
+            color: #4a3828;
             flex-shrink: 0;
         }
 
         .g-name {
             font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: #888;
-            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            color: #7a6555;
+            letter-spacing: 0.06em;
         }
 
         /* Lightbox */
         .lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(0, 0, 0, 0.96);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 100;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.15s ease;
+            transition: opacity 0.2s ease;
             cursor: zoom-out;
         }
 
@@ -85,74 +122,85 @@
         }
 
         .lightbox-img {
-            max-width: 90vw;
+            max-width: 88vw;
             max-height: 88vh;
             object-fit: contain;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 32px 96px rgba(0, 0, 0, 0.9);
         }
 
         @media (max-width: 768px) {
-            .g-frame img {
-                height: 220px;
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 0 1.5rem 4rem;
+                gap: 3rem;
+            }
+
+            .gallery-header {
+                padding: 4rem 1.5rem 2rem;
+            }
+
+            .mat img {
+                height: 240px;
             }
         }
     </style>
 </head>
 <body>
-    <main class="page">
-        <nav>
-            <a href="../index.html">home</a>
-            <span class="nav-sep">·</span>
-            <a href="writings.html">writings</a>
-            <span class="nav-sep">·</span>
-            <a href="library.html">library</a>
-            <span class="nav-sep">·</span>
-            <a href="watercolors.html">watercolors</a>
-        </nav>
+    <nav class="top-nav">
+        <a href="../index.html">home</a>
+        <span class="nav-sep">·</span>
+        <a href="writings.html">writings</a>
+        <span class="nav-sep">·</span>
+        <a href="library.html">library</a>
+        <span class="nav-sep">·</span>
+        <a href="watercolors.html">watercolors</a>
+    </nav>
+
+    <header class="gallery-header">
         <h1>Watercolors</h1>
+    </header>
 
-        <div class="g-grid">
-            <figure class="g-item">
-                <div class="g-frame">
-                    <img src="../sources/imgs/basecampmoon-desktop.jpg" alt="Basecamp Moon">
-                </div>
-                <figcaption class="g-caption">
-                    <span class="g-num">01</span>
-                    <span class="g-name">Basecamp Moon</span>
-                </figcaption>
-            </figure>
+    <div class="gallery">
+        <figure>
+            <div class="mat">
+                <img src="../sources/imgs/basecampmoon-desktop.jpg" alt="Basecamp Moon">
+            </div>
+            <figcaption>
+                <span class="g-num">01</span>
+                <span class="g-name">Basecamp Moon</span>
+            </figcaption>
+        </figure>
 
-            <figure class="g-item">
-                <div class="g-frame">
-                    <img src="../sources/imgs/california-desktop.jpg" alt="California">
-                </div>
-                <figcaption class="g-caption">
-                    <span class="g-num">02</span>
-                    <span class="g-name">California</span>
-                </figcaption>
-            </figure>
+        <figure>
+            <div class="mat">
+                <img src="../sources/imgs/california-desktop.jpg" alt="California">
+            </div>
+            <figcaption>
+                <span class="g-num">02</span>
+                <span class="g-name">California</span>
+            </figcaption>
+        </figure>
 
-            <figure class="g-item">
-                <div class="g-frame">
-                    <img src="../sources/imgs/finland-desktop.jpg" alt="Finland">
-                </div>
-                <figcaption class="g-caption">
-                    <span class="g-num">03</span>
-                    <span class="g-name">Finland</span>
-                </figcaption>
-            </figure>
+        <figure>
+            <div class="mat">
+                <img src="../sources/imgs/finland-desktop.jpg" alt="Finland">
+            </div>
+            <figcaption>
+                <span class="g-num">03</span>
+                <span class="g-name">Finland</span>
+            </figcaption>
+        </figure>
 
-            <figure class="g-item">
-                <div class="g-frame">
-                    <img src="../sources/imgs/sweden-desktop.jpg" alt="Sweden">
-                </div>
-                <figcaption class="g-caption">
-                    <span class="g-num">04</span>
-                    <span class="g-name">Sweden</span>
-                </figcaption>
-            </figure>
-        </div>
-    </main>
+        <figure>
+            <div class="mat">
+                <img src="../sources/imgs/sweden-desktop.jpg" alt="Sweden">
+            </div>
+            <figcaption>
+                <span class="g-num">04</span>
+                <span class="g-name">Sweden</span>
+            </figcaption>
+        </figure>
+    </div>
 
     <div class="lightbox" id="lightbox">
         <img class="lightbox-img" id="lightbox-img" src="" alt="">
@@ -162,7 +210,7 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
 
-        document.querySelectorAll('.g-frame img').forEach(img => {
+        document.querySelectorAll('.mat img').forEach(img => {
             img.addEventListener('click', () => {
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;

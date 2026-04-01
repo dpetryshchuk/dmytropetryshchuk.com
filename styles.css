@@ -244,14 +244,6 @@ a:focus-visible {
     outline-offset: 2px;
 }
 
-/* Explore section */
-.explore {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-}
-
 /* Fixed top navigation */
 .top-nav {
     position: fixed;
