@@ -1,114 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-    <link rel="stylesheet" href="../styles.css">
-    <title>Library - Dmytro Petryshchuk</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <title>Library — Dmytro Petryshchuk</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #130e07;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Floating nav */
+    .nav-home {
+      position: fixed;
+      top: 14px;
+      left: 16px;
+      z-index: 100;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+    .nav-home a {
+      color: #6b5030;
+      text-decoration: none;
+    }
+    .nav-home a:hover {
+      color: #c4a050;
+    }
+
+    /* Full-screen wall of shelves */
+    .bookwall {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* One horizontal shelf row */
+    .shelf {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      position: relative;
+      border-bottom: 5px solid #231508;
+      box-shadow:
+        inset 0 -1px 0 rgba(255,255,255,0.03),
+        0 3px 8px rgba(0,0,0,0.4);
+      overflow: visible;
+    }
+
+    /* Category tag etched into the plank */
+    .shelf-label {
+      position: absolute;
+      bottom: -4px;
+      right: 12px;
+      font-size: 7.5px;
+      color: #4a3018;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Individual book spine */
+    .book {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px 5px;
+      position: relative;
+      border-right: 1px solid rgba(0,0,0,0.28);
+      transition: transform 0.22s ease, filter 0.22s ease, box-shadow 0.22s ease;
+      will-change: transform;
+      overflow: hidden;
+    }
+
+    /* Subtle vertical grain — like cloth or paper spine texture */
+    .book::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,0.012) 3px,
+        rgba(255,255,255,0.012) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Top-edge highlight — catches light like a real spine */
+    .book::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+
+    .book:hover {
+      transform: translateY(-12px);
+      filter: brightness(0.76);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.6);
+      z-index: 20;
+    }
+
+    .book-title {
+      font-size: 9px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.4;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .book-author {
+      font-size: 7px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.3;
+      opacity: 0.62;
+    }
+
+    .podcast-icon {
+      font-size: 11px;
+      margin-top: 1px;
+      opacity: 0.8;
+    }
+  </style>
 </head>
-<body class="bg-library">
-    <nav class="top-nav">
-        <a href="../index.html">home</a>
-        <span class="nav-sep">·</span>
-        <a href="writings.html">writings</a>
-        <span class="nav-sep">·</span>
-        <a href="library.html">library</a>
-        <span class="nav-sep">·</span>
-        <a href="watercolors.html">watercolors</a>
-    </nav>
-    <main class="page">
-        <h1>Library</h1>
-        <p class="subtitle">Books and podcasts I keep coming back to.</p>
+<body>
 
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="reading">Books & Podcasts</button>
-            <button class="tab-btn" data-tab="tools">Tools</button>
-        </div>
+<div class="nav-home"><a href="../index.html">← home</a></div>
+<div class="bookwall" id="bookwall"></div>
 
-        <div class="tab-panel" id="tab-reading">
-            <section>
-                <h2>Podcasts I Love</h2>
-                <ul class="simple-list">
-                    <li>Joe Hudson</li>
-                    <li>My First Million</li>
-                </ul>
-            </section>
+<script>
+const shelves = [
+  {
+    label: "Philosophy & Spirituality",
+    books: [
+      { title: "Meditations",                    author: "Marcus Aurelius",    bg: "#1B3A6B", fg: "#D4AF37" },
+      { title: "Siddhartha",                      author: "Hermann Hesse",      bg: "#B5621C", fg: "#FFF0D8" },
+      { title: "The Little Prince",               author: "de Saint-Exupéry",  bg: "#1C4B90", fg: "#F5D020" },
+      { title: "Man's Search for Meaning",        author: "Viktor Frankl",      bg: "#5C1A28", fg: "#F0D0B0" },
+      { title: "The Untethered Soul",             author: "Michael Singer",     bg: "#187878", fg: "#D0F5F0" },
+      { title: "Heart of the Buddha's Teachings", author: "Thich Nhat Hanh",   bg: "#B05600", fg: "#FFF2C0" },
+      { title: "The Way to Love",                 author: "Anthony de Mello",   bg: "#481E80", fg: "#E8D8FF" },
+    ]
+  },
+  {
+    label: "Self-Improvement & Psychology",
+    books: [
+      { title: "7 Habits of Highly Effective People", author: "Stephen Covey",  bg: "#1C3878", fg: "#B0D0FF" },
+      { title: "Psycho-Cybernetics",                   author: "Maxwell Maltz", bg: "#385A1C", fg: "#C8E8A0" },
+      { title: "Essentialism",                          author: "Greg McKeown", bg: "#161616", fg: "#E8E8E8" },
+      { title: "Wishcraft",                             author: "Barbara Sher", bg: "#B88C18", fg: "#FFF8DC" },
+    ]
+  },
+  {
+    label: "Relationships & Communication",
+    books: [
+      { title: "Models",             author: "Mark Manson",    bg: "#080808", fg: "#EFEFEF" },
+      { title: "Supercommunicators", author: "Charles Duhigg", bg: "#185C7A", fg: "#C0E8F8" },
+    ]
+  },
+  {
+    label: "Business & Leadership",
+    books: [
+      { title: "The Mom Test",             author: "Rob Fitzpatrick", bg: "#186C38", fg: "#C0F0D0" },
+      { title: "Straight Line Leadership", author: "Dusan Djukich",   bg: "#101028", fg: "#8888F0" },
+      { title: "Rework",                   author: "Fried & Hansson", bg: "#C03018", fg: "#FFEDE8" },
+    ]
+  },
+  {
+    label: "Mastery & Skill",
+    books: [
+      { title: "Mastery", author: "Robert Greene", bg: "#280808", fg: "#C08080" },
+    ]
+  },
+  {
+    label: "Fiction & Memoir",
+    books: [
+      { title: "Three Body Problem",      author: "Liu Cixin",         bg: "#040410", fg: "#5878FF" },
+      { title: "The Stormlight Archive",  author: "Brandon Sanderson", bg: "#0E0828", fg: "#9898FF" },
+      { title: "When Breath Becomes Air", author: "Paul Kalanithi",    bg: "#285870", fg: "#C8E0EC" },
+    ]
+  },
+  {
+    label: "Listening",
+    books: [
+      { title: "Joe Hudson",       author: "", bg: "#203828", fg: "#88C8A0", podcast: true },
+      { title: "My First Million", author: "", bg: "#482808", fg: "#F0C858", podcast: true },
+    ]
+  }
+];
 
-            <section>
-                <h2>Books</h2>
+// Vary flex-grow loosely by content length so books have organic widths
+function weight(book) {
+  const len = book.title.length + book.author.length;
+  return Math.max(1.0, Math.min(2.4, 0.75 + len / 32));
+}
 
-                <h3>Philosophy & Spirituality</h3>
-                <ul class="book-list">
-                    <li><em>Meditations</em> — Marcus Aurelius</li>
-                    <li><em>Siddhartha</em> — Hermann Hesse</li>
-                    <li><em>The Little Prince</em> — Antoine de Saint-Exupéry</li>
-                    <li><em>Man's Search for Meaning</em> — Viktor Frankl</li>
-                    <li><em>The Untethered Soul</em> — Michael Singer</li>
-                    <li><em>The Heart of the Buddha's Teachings</em> — Thich Nhat Hanh</li>
-                    <li><em>The Way to Love</em> — Anthony de Mello</li>
-                </ul>
+const wall = document.getElementById('bookwall');
 
-                <h3>Self-Improvement & Psychology</h3>
-                <ul class="book-list">
-                    <li><em>7 Habits of Highly Effective People</em> — Stephen Covey</li>
-                    <li><em>Psycho-Cybernetics</em> — Maxwell Maltz</li>
-                    <li><em>Essentialism</em> — Greg McKeown</li>
-                    <li><em>Wishcraft</em> — Barbara Sher</li>
-                </ul>
+shelves.forEach(({ label, books }) => {
+  const shelfEl = document.createElement('div');
+  shelfEl.className = 'shelf';
 
-                <h3>Relationships & Communication</h3>
-                <ul class="book-list">
-                    <li><em>Models</em> — Mark Manson</li>
-                    <li><em>Supercommunicators</em> — Charles Duhigg</li>
-                </ul>
+  books.forEach(book => {
+    const spine = document.createElement('div');
+    spine.className = 'book';
+    spine.style.background = book.bg;
+    spine.style.color = book.fg;
+    spine.style.flexGrow = weight(book);
 
-                <h3>Business & Leadership</h3>
-                <ul class="book-list">
-                    <li><em>The Mom Test</em> — Rob Fitzpatrick</li>
-                    <li><em>Straight Line Leadership</em> — Dusan Djukich</li>
-                    <li><em>Rework</em> — Jason Fried & David Heinemeier Hansson</li>
-                </ul>
+    const titleEl = document.createElement('span');
+    titleEl.className = 'book-title';
+    titleEl.textContent = book.title;
+    spine.appendChild(titleEl);
 
-                <h3>Mastery & Skill</h3>
-                <ul class="book-list">
-                    <li><em>Mastery</em> — Robert Greene</li>
-                </ul>
+    if (book.author) {
+      const authorEl = document.createElement('span');
+      authorEl.className = 'book-author';
+      authorEl.textContent = book.author;
+      spine.appendChild(authorEl);
+    }
 
-                <h3>Fiction & Memoir</h3>
-                <ul class="book-list">
-                    <li><em>Three Body Problem Series</em> — Liu Cixin</li>
-                    <li><em>The Stormlight Archive</em> — Brandon Sanderson</li>
-                    <li><em>When Breath Becomes Air</em> — Paul Kalanithi</li>
-                </ul>
-            </section>
-        </div>
+    if (book.podcast) {
+      const icon = document.createElement('span');
+      icon.className = 'podcast-icon';
+      icon.textContent = '♪';
+      spine.appendChild(icon);
+    }
 
-        <div class="tab-panel" id="tab-tools" hidden>
-            <section>
-                <h2>Agentic Development</h2>
-                <ul class="simple-list">
-                    <li><a href="https://github.com/anthropics/claude-code">Claude Code</a></li>
-                    <li><a href="https://github.com/anthropics/claude-code-sdk-python">Claude Code SDK (Python)</a></li>
-                    <li><a href="https://github.com/obra/superpowers">Superpowers</a></li>
-                </ul>
-            </section>
-        </div>
-    </main>
+    shelfEl.appendChild(spine);
+  });
 
-    <script>
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-panel').forEach(p => p.hidden = true);
-                btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).hidden = false;
-            });
-        });
-    </script>
-    <script data-goatcounter="https://dima.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+  const labelEl = document.createElement('span');
+  labelEl.className = 'shelf-label';
+  labelEl.textContent = label;
+  shelfEl.appendChild(labelEl);
+
+  wall.appendChild(shelfEl);
+});
+</script>
+
+<script data-goatcounter="https://dima.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
