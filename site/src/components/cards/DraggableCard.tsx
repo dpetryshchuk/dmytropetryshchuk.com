@@ -13,7 +13,7 @@ interface Props {
 export function DraggableCard({
   id,
   defaultPosition,
-  defaultSize = { width: 'auto', height: 'auto' },
+  defaultSize,
   children,
 }: Props) {
   const position = useCanvasStore((s) => s.cardPositions[id]) ?? defaultPosition
@@ -22,7 +22,7 @@ export function DraggableCard({
   return (
     <Rnd
       position={position}
-      size={defaultSize}
+      {...(defaultSize ? { size: defaultSize } : {})}
       enableResizing={false}
       dragHandleClassName="drag-handle"
       bounds="parent"
