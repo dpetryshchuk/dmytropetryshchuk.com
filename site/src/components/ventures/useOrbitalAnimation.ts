@@ -9,22 +9,22 @@ interface OrbitalAnimation {
 export function useOrbitalAnimation(): OrbitalAnimation {
   const angleRef = useRef(0)
   const isPausedRef = useRef(false)
-  const rafRef = useRef<number>(0)
+  const rafRef = useRef<number | null>(null)
+  const isMountedRef = useRef(true)
   const [, setTickState] = useState(0)
 
   useEffect(() => {
     const tick = () => {
-      if (!isPausedRef.current) {
-        angleRef.current += 0.00005
-      }
-      setTickState(n => n + 1)
+      if (!isPausedRef.current) angleRef.current += 0.00005
+      if (isMountedRef.current) setTickState(n => n + 1)
       rafRef.current = requestAnimationFrame(tick)
     }
 
     rafRef.current = requestAnimationFrame(tick)
 
     return () => {
-      cancelAnimationFrame(rafRef.current)
+      isMountedRef.current = false
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
     }
   }, [])
 
