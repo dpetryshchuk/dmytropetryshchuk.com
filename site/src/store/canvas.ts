@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export type PanelType = 'library' | 'writings' | 'watercolors'
 
@@ -33,6 +33,7 @@ export const useCanvasStore = create<CanvasStore>()(
     }),
     {
       name: 'canvas-state',
+      storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ cardPositions: state.cardPositions }),
     }
   )

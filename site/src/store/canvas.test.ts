@@ -3,6 +3,7 @@ import { useCanvasStore } from './canvas'
 
 describe('useCanvasStore', () => {
   beforeEach(() => {
+    localStorage.clear()
     useCanvasStore.setState({
       cardPositions: {},
       activePanel: null,
