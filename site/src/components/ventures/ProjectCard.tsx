@@ -14,7 +14,7 @@ export function ProjectCard({ selectedProject, setSelectedProject }: Props) {
   if (!project) return null
 
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 w-[40vw] min-w-[280px] bg-white rounded-xl shadow-2xl z-50 p-6 relative transition-all duration-150">
+    <div className="fixed right-8 top-1/2 -translate-y-1/2 w-[40vw] min-w-[280px] bg-white rounded-xl shadow-2xl z-50 p-6 transition-all duration-150">
       {/* Close button */}
       <button
         className="absolute top-4 right-4 font-mono text-xs text-neutral-400 hover:text-ink cursor-pointer bg-transparent border-none p-0"
