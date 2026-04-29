@@ -50,12 +50,19 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
       width={400}
       height={400}
       className={selectedProject !== null ? 'opacity-40 transition-opacity duration-200' : 'transition-opacity duration-200'}
-      onMouseDown={(e) => {
-        if (selectedProject !== null && e.target === e.currentTarget) {
-          setSelectedProject(null)
-        }
-      }}
     >
+      {/* Fix 4: Accessibility title */}
+      <title>Ventures — projects orbital visualization</title>
+
+      {/* Fix 1: Transparent hit-rect for dismiss when a project is selected */}
+      {selectedProject !== null && (
+        <rect
+          x={0} y={0} width={400} height={400}
+          fill="transparent"
+          onMouseDown={() => setSelectedProject(null)}
+        />
+      )}
+
       <defs>
         {/* Normal node drop shadow */}
         <filter id="node-shadow" x="-50%" y="-50%" width="200%" height="200%">
@@ -100,9 +107,13 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
             key={project.id}
             opacity={0.65}
             transform={isHovered ? `translate(0, -10)` : undefined}
-            style={{ cursor: 'pointer' }}
+            style={{ transition: 'transform 150ms ease', cursor: 'pointer' }}
             role="button"
             aria-label={project.name}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') setSelectedProject(project.id)
+            }}
             onMouseEnter={() => { pause(); setHoveredId(project.id) }}
             onMouseLeave={() => { resume(); setHoveredId(null) }}
             onMouseDown={() => setSelectedProject(project.id)}
@@ -111,7 +122,8 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
               cx={pos.x}
               cy={pos.y}
               r={16}
-              fill={project.color + '66'}
+              fill={project.color}
+              fillOpacity={0.4}
               stroke="white"
               strokeWidth={1}
               filter={isHovered ? 'url(#node-shadow-hover)' : undefined}
@@ -128,9 +140,13 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
           <g
             key={project.id}
             transform={isHovered ? `translate(0, -10)` : undefined}
-            style={{ cursor: 'pointer' }}
+            style={{ transition: 'transform 150ms ease', cursor: 'pointer' }}
             role="button"
             aria-label={project.name}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') setSelectedProject(project.id)
+            }}
             onMouseEnter={() => { pause(); setHoveredId(project.id) }}
             onMouseLeave={() => { resume(); setHoveredId(null) }}
             onMouseDown={() => setSelectedProject(project.id)}
@@ -183,7 +199,6 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
             y={152}
             width={96}
             height={96}
-            clipPathUnits="userSpaceOnUse"
             clipPath="url(#avatar-clip)"
             preserveAspectRatio="xMidYMid slice"
             onError={() => setAvatarError(true)}
