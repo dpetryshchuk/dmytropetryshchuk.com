@@ -31,7 +31,6 @@ const VARIANTS: Record<PanelType, {
 
 export function Panel({ type, children }: { type: PanelType; children: React.ReactNode }) {
   const activePanel = useCanvasStore((s) => s.activePanel)
-  const setActivePanel = useCanvasStore((s) => s.setActivePanel)
   const { initial, animate, exit, className } = VARIANTS[type]
   const isOpen = activePanel === type
 
@@ -48,7 +47,7 @@ export function Panel({ type, children }: { type: PanelType; children: React.Rea
         >
           <button
             aria-label="Close panel"
-            onClick={() => setActivePanel(null)}
+            onClick={() => useCanvasStore.getState().setActivePanel(null)}
             className="absolute top-4 right-4 font-mono text-xs text-neutral-400 hover:text-ink transition-colors"
           >
             ✕
