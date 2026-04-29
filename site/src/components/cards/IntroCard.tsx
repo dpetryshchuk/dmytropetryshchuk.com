@@ -11,7 +11,7 @@ export function IntroCard() {
       </p>
       <div className="mt-5 flex gap-4 font-mono text-[11px] text-accent">
         <a
-          href="mailto:dmytro2@illinois.edu"
+          href="mailto:dmytrodim@gmail.com"
           className="hover:underline transition-opacity hover:opacity-80"
           onClick={(e) => e.stopPropagation()}
         >
