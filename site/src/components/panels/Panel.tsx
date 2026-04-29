@@ -1,12 +1,12 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, TargetAndTransition } from 'framer-motion'
 import { useCanvasStore, PanelType } from '@/store/canvas'
 
 const VARIANTS: Record<PanelType, {
-  initial: object
-  animate: object
-  exit: object
+  initial: TargetAndTransition
+  animate: TargetAndTransition
+  exit: TargetAndTransition
   className: string
 }> = {
   library: {
