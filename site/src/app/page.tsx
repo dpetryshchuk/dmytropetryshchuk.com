@@ -8,6 +8,7 @@ import { EdgeHandle } from '@/components/canvas/EdgeHandle'
 import { Panel } from '@/components/panels/Panel'
 import { WatercolorsPanel } from '@/components/panels/WatercolorsPanel'
 import { LibraryPanel } from '@/components/panels/LibraryPanel'
+import { WritingsPanel } from '@/components/panels/WritingsPanel'
 import { VenturesWheel } from '@/components/ventures/VenturesWheel'
 import { ProjectCard } from '@/components/ventures/ProjectCard'
 
@@ -41,10 +42,7 @@ export default function Home() {
       </Panel>
 
       <Panel type="writings">
-        <div className="p-6 pt-12">
-          <h2 className="font-fraunces text-xl text-ink">Writings</h2>
-          <p className="mt-1 font-inter text-sm text-neutral-400">Coming soon.</p>
-        </div>
+        <WritingsPanel />
       </Panel>
 
       <Panel type="watercolors">
