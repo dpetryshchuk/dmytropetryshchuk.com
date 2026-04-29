@@ -1,7 +1,7 @@
-# Site Redesign — Design Spec (IN PROGRESS)
+# Site Redesign — Design Spec
 
 **Date:** 2026-04-28  
-**Status:** Brainstorming in progress — sections 1–4 approved, sections 5–6 pending
+**Status:** Complete — all sections approved
 
 ---
 
@@ -17,7 +17,7 @@ Redesigning dmytropetryshchuk.com from a light two-panel static HTML site into a
 
 ## Tech Stack
 
-- **Framework:** React (migrating from vanilla HTML/CSS)
+- **Framework:** Next.js (React — migrating from vanilla HTML/CSS; Next.js enables SSG for Beehiiv RSS fetch at build time and static export for simple hosting)
 - **Chatbot backend:** n8n (self-hosted on Railway) — Chat Trigger → RAG → cheap LLM → Respond to Webhook
 - **Model:** Claude Haiku or GPT-4o mini (keep costs low)
 - **Persistent memory:** UUID in localStorage, keyed to Postgres Chat Memory node in n8n
@@ -87,27 +87,63 @@ Not a FAQ bot — a version of Dima that visitors can actually talk to. Trained 
 
 ---
 
-## Section 5: Panel Navigation (Library, Writings, Watercolors) — PENDING
+## Section 5: Panel Navigation (Library, Writings, Watercolors) ✅ Approved
 
-- **Library** slides in from the left edge
-- **Writings** slides in from the right edge
-- **Watercolors** slides up from the top edge
-- Each triggered by a floating edge handle always visible on the canvas
+Each panel is triggered by a floating edge handle always visible on the canvas.
 
-*Design of each panel's internal layout to be decided.*
+### Library (slides in from left edge)
+
+~440px wide panel. White background, soft shadow on the right edge. Scrolls vertically.
+
+**Header:** "Library" in Fraunces, with a muted subline in Inter.
+
+**Section headers:** Mono, small, uppercase (`BOOKS` / `PODCASTS` / `YOUTUBE`) with a thin rule beneath — Finder sidebar label style.
+
+**List rows:**
+- Cover thumbnail left: portrait ratio for books (~44×60px), square for podcasts/YouTube (~48×48px), slightly rounded corners, real cover art
+- Title in Inter medium, author/host below in Inter small muted (`#666`)
+- Row height ~72px, subtle hover highlight (light gray tint)
+
+**Hover tooltip (Quick Look style):**
+- Floating panel appears to the right of the Library panel
+- ~260px wide, dark background (`#1C1C1C`), white text, 8px radius, shadow
+- Contains: larger cover (~80px), title, author/host, Dima's 1–2 sentence personal note
+- 120ms fade-in
+
+**Cover art scraper:** Open Library API for books, iTunes Search API for podcast artwork, YouTube channel thumbnail URL pattern. All cached as local static assets — no runtime API calls.
 
 ---
 
-## Section 6: Mobile — PENDING
+### Writings (slides in from right edge)
 
-The spatial OS canvas needs a different interaction model on mobile. Approach to be determined.
+Simple title list. Two sections:
+- **Essays** — local markdown files
+- **Newsletter** — posts fetched from Beehiiv RSS feed at build time
+
+Each item is a clickable title. Section headers match the mono label style from Library.
+
+---
+
+### Watercolors (slides up from top edge)
+
+Lightbox gallery of 4 paintings. Click any painting to open fullscreen lightbox with prev/next navigation.
+
+---
+
+## Section 6: Mobile ✅ Approved
+
+Mobile is an acceptable/simplified experience — same visual personality, different interaction model.
+
+- **Background & cards:** Paper texture and card aesthetic carry through from desktop
+- **Layout:** Floating islands → stacked scrollable cards, single-column
+- **Ventures wheel:** Tap-to-expand card list with amber accents; no ambient rotation animation
+- **Panel navigation:** Fixed bottom nav bar with icons for Library, Writings, and Watercolors
+- **Panels:** Open as bottom sheets (swipe up)
 
 ---
 
 ## Open Questions
 
 - What does Dima write as the chatbot's opening message / system prompt voice?
-- What content goes inside the Library and Writings panels (same as current pages, or restructured)?
-- Mobile navigation pattern for the spatial layout
 - n8n hosting: self-hosted Railway vs n8n Cloud
 - Vector store choice for RAG: Pinecone, Supabase pgvector, or other
