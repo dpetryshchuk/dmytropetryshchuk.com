@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Canvas } from '@/components/canvas/Canvas'
 import { DraggableCard } from '@/components/cards/DraggableCard'
 import { IntroCard } from '@/components/cards/IntroCard'
@@ -12,16 +12,34 @@ import { WritingsPanel } from '@/components/panels/WritingsPanel'
 import { VenturesWheel } from '@/components/ventures/VenturesWheel'
 import { ProjectCard } from '@/components/ventures/ProjectCard'
 
+function getDefaultPositions() {
+  if (typeof window === 'undefined') return {
+    intro:    { x: 80,  y: 300 },
+    ventures: { x: 900, y: 200 },
+  }
+  const w = window.innerWidth
+  const h = window.innerHeight
+  return {
+    intro:    { x: Math.round(w * 0.05),  y: Math.round((h - 180) * 0.45) },
+    ventures: { x: Math.round(w * 0.52),  y: Math.round((h - 420) * 0.42) },
+  }
+}
+
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
+  const [defaultPositions, setDefaultPositions] = useState(getDefaultPositions)
+
+  useEffect(() => {
+    setDefaultPositions(getDefaultPositions())
+  }, [])
 
   return (
     <Canvas>
-      <DraggableCard id="intro" defaultPosition={{ x: 40, y: 60 }}>
+      <DraggableCard id="intro" defaultPosition={defaultPositions.intro}>
         <IntroCard />
       </DraggableCard>
 
-      <DraggableCard id="ventures" defaultPosition={{ x: 420, y: 60 }}>
+      <DraggableCard id="ventures" defaultPosition={defaultPositions.ventures}>
         <VenturesWheel
           selectedProject={selectedProject}
           setSelectedProject={setSelectedProject}

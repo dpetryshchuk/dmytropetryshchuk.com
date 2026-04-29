@@ -32,7 +32,7 @@ export const useCanvasStore = create<CanvasStore>()(
         }),
     }),
     {
-      name: 'canvas-state',
+      name: 'canvas-state-v2',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ cardPositions: state.cardPositions }),
     }

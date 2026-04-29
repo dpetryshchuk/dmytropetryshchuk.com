@@ -16,7 +16,7 @@ export function useOrbitalAnimation(): OrbitalAnimation {
   useEffect(() => {
     const tick = () => {
       if (!isMountedRef.current) return
-      if (!isPausedRef.current) angleRef.current += 0.00005
+      if (!isPausedRef.current) angleRef.current += 0.0003
       setTickState(n => n + 1)
       rafRef.current = requestAnimationFrame(tick)
     }
