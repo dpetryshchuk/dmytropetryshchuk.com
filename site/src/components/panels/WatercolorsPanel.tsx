@@ -16,8 +16,8 @@ export function WatercolorsPanel() {
   return (
     <>
       <div className="p-6 pt-12">
-        <h2 className="font-fraunces text-xl text-ink">Watercolors</h2>
-        <p className="font-mono text-xs text-neutral-400 mt-1 uppercase tracking-widest">Paintings</p>
+        <h2 className="font-fraunces text-2xl text-white">Watercolors</h2>
+        <p className="font-mono text-xs text-white/40 mt-1 uppercase tracking-widest">Paintings</p>
       </div>
 
       <div className="grid grid-cols-2 gap-4 p-6 pt-2">

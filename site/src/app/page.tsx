@@ -11,6 +11,7 @@ import { LibraryPanel } from '@/components/panels/LibraryPanel'
 import { WritingsPanel } from '@/components/panels/WritingsPanel'
 import { VenturesWheel } from '@/components/ventures/VenturesWheel'
 import { ProjectCard } from '@/components/ventures/ProjectCard'
+import { AvatarCard } from '@/components/cards/AvatarCard'
 
 function getDefaultPositions() {
   if (typeof window === 'undefined') return {
@@ -22,12 +23,13 @@ function getDefaultPositions() {
   return {
     intro:    { x: Math.round(w * 0.05),  y: Math.round((h - 220) * 0.45) },
     ventures: { x: Math.round(w * 0.42),  y: Math.round((h - 580) * 0.42) },
+    avatar:   { x: Math.round(w * 0.42 + 242), y: Math.round((h - 580) * 0.42 + 242) },
   }
 }
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
-  const [defaultPositions, setDefaultPositions] = useState(getDefaultPositions)
+  const [defaultPositions, setDefaultPositions] = useState<ReturnType<typeof getDefaultPositions>>(getDefaultPositions)
 
   useEffect(() => {
     setDefaultPositions(getDefaultPositions())
@@ -44,6 +46,10 @@ export default function Home() {
           selectedProject={selectedProject}
           setSelectedProject={setSelectedProject}
         />
+      </DraggableCard>
+
+      <DraggableCard id="avatar" defaultPosition={defaultPositions.avatar ?? { x: 500, y: 300 }}>
+        <AvatarCard />
       </DraggableCard>
 
       <ProjectCard

@@ -12,7 +12,6 @@ interface Props {
 export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
   const { angle, pause, resume } = useOrbitalAnimation()
   const [hoveredId, setHoveredId] = useState<string | null>(null)
-  const [avatarError, setAvatarError] = useState(false)
 
   const primaryProjects = projects.filter(p => p.tier === 'primary')
   const secondaryProjects = projects.filter(p => p.tier === 'secondary')
@@ -174,38 +173,8 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
         )
       })}
 
-      {/* Layer 4: Center avatar */}
-      {avatarError ? (
-        <g>
-          <circle cx={200} cy={200} r={48} fill="#C4781A" />
-          <text
-            x={200}
-            y={200}
-            textAnchor="middle"
-            dominantBaseline="central"
-            fontSize={20}
-            fill="white"
-            fontFamily="var(--font-fraunces)"
-          >
-            DP
-          </text>
-          <circle cx={200} cy={200} r={48} fill="none" stroke="#C4781A" strokeWidth={2} />
-        </g>
-      ) : (
-        <g>
-          <image
-            href="/avatar.jpg"
-            x={152}
-            y={152}
-            width={96}
-            height={96}
-            clipPath="url(#avatar-clip)"
-            preserveAspectRatio="xMidYMid slice"
-            onError={() => setAvatarError(true)}
-          />
-          <circle cx={200} cy={200} r={48} fill="none" stroke="#C4781A" strokeWidth={2} />
-        </g>
-      )}
+      {/* Layer 4: Center anchor ring (avatar floats freely as its own card) */}
+      <circle cx={200} cy={200} r={48} fill="rgba(248,244,238,0.6)" stroke="#C4781A" strokeWidth={2} strokeDasharray="4 4" />
     </svg>
   )
 }
