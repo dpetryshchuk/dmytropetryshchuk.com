@@ -32,7 +32,7 @@ export function EdgeHandle({ panel }: { panel: PanelType }) {
       className={`absolute ${position} z-40 bg-white border border-neutral-200 rounded-sm px-2 py-3 font-mono text-[10px] uppercase tracking-widest shadow-sm transition-colors ${
         isActive
           ? 'text-accent border-accent'
-          : 'text-neutral-400 hover:text-accent hover:border-amber-300'
+          : 'text-neutral-400 hover:text-accent hover:border-accent'
       }`}
       style={{ writingMode: writing as React.CSSProperties['writingMode'] }}
     >
