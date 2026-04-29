@@ -7,6 +7,7 @@ import { IntroCard } from '@/components/cards/IntroCard'
 import { EdgeHandle } from '@/components/canvas/EdgeHandle'
 import { Panel } from '@/components/panels/Panel'
 import { WatercolorsPanel } from '@/components/panels/WatercolorsPanel'
+import { LibraryPanel } from '@/components/panels/LibraryPanel'
 import { VenturesWheel } from '@/components/ventures/VenturesWheel'
 import { ProjectCard } from '@/components/ventures/ProjectCard'
 
@@ -36,10 +37,7 @@ export default function Home() {
       <EdgeHandle panel="watercolors" />
 
       <Panel type="library">
-        <div className="p-6 pt-12">
-          <h2 className="font-fraunces text-xl text-ink">Library</h2>
-          <p className="mt-1 font-inter text-sm text-neutral-400">Coming soon.</p>
-        </div>
+        <LibraryPanel />
       </Panel>
 
       <Panel type="writings">
