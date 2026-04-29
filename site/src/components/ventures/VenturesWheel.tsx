@@ -47,8 +47,8 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
   return (
     <svg
       viewBox="0 0 400 400"
-      width={400}
-      height={400}
+      width={580}
+      height={580}
       className={selectedProject !== null ? 'opacity-40 transition-opacity duration-200' : 'transition-opacity duration-200'}
     >
       {/* Fix 4: Accessibility title */}

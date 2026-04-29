@@ -20,8 +20,8 @@ function getDefaultPositions() {
   const w = window.innerWidth
   const h = window.innerHeight
   return {
-    intro:    { x: Math.round(w * 0.05),  y: Math.round((h - 180) * 0.45) },
-    ventures: { x: Math.round(w * 0.52),  y: Math.round((h - 420) * 0.42) },
+    intro:    { x: Math.round(w * 0.05),  y: Math.round((h - 220) * 0.45) },
+    ventures: { x: Math.round(w * 0.42),  y: Math.round((h - 580) * 0.42) },
   }
 }
 
