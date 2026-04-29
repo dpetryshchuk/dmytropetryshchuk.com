@@ -6,6 +6,7 @@ import { DraggableCard } from '@/components/cards/DraggableCard'
 import { IntroCard } from '@/components/cards/IntroCard'
 import { EdgeHandle } from '@/components/canvas/EdgeHandle'
 import { Panel } from '@/components/panels/Panel'
+import { WatercolorsPanel } from '@/components/panels/WatercolorsPanel'
 import { VenturesWheel } from '@/components/ventures/VenturesWheel'
 import { ProjectCard } from '@/components/ventures/ProjectCard'
 
@@ -49,10 +50,7 @@ export default function Home() {
       </Panel>
 
       <Panel type="watercolors">
-        <div className="p-6 pt-12">
-          <h2 className="font-fraunces text-xl text-ink">Watercolors</h2>
-          <p className="mt-1 font-inter text-sm text-neutral-400">Coming soon.</p>
-        </div>
+        <WatercolorsPanel />
       </Panel>
     </Canvas>
   )
