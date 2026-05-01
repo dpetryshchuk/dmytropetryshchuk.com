@@ -149,8 +149,6 @@ export default async function Home() {
           <TocLinks items={tocItems} />
 
           <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-sans)' }}>
-            <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 4, color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Links</div>
-            <a href="/essays" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>Essays</a>
             <a href="/writing" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>Monthly Newsletter</a>
             <a href="https://linkedin.com/in/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>LinkedIn</a>
             <a href="https://github.com/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>GitHub</a>
@@ -167,7 +165,7 @@ export default async function Home() {
           {/* 1. Bio */}
           <Section num="1" title="Bio" first collapsible defaultOpen>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px' }}>
-              Hey 👋, I'm Dmytro (or Dima), an entrepreneur, engineer, writer, and worldbuilding nerd.
+              Hey 👋, I'm <strong>Dmytro Petryshchuk</strong> (or Dima), an entrepreneur, engineer, writer, and worldbuilding nerd.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
               I'm the founder of{' '}
