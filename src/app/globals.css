@@ -93,6 +93,17 @@ html.dark body {
 .article-body th, .article-body td { border: 1px solid var(--rule); padding: 8px 12px; text-align: left; }
 .article-body th { font-family: var(--font-sans); font-weight: 600; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
 
+/* Essay blockquotes */
+.article-body blockquote {
+  margin: 1.5em 0;
+  padding: 0.1em 0 0.1em 1.25em;
+  border-left: 3px solid var(--rule);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.article-body blockquote p { margin: 0 0 0.4em; }
+.article-body blockquote p:last-child { margin: 0; }
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

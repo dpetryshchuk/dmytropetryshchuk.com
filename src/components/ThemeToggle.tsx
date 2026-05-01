@@ -2,17 +2,30 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+type Mode = 'light' | 'dark' | 'auto'
+
+function applyTheme(mode: Mode) {
+  const dark = mode === 'dark' || (mode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  document.documentElement.classList.toggle('dark', dark)
+}
+
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false)
+  const [mode, setMode] = useState<Mode>('light')
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const isDark = saved ? saved === 'dark' : prefersDark
-    setDark(isDark)
-    document.documentElement.classList.toggle('dark', isDark)
+    const saved = (localStorage.getItem('theme') as Mode | null) ?? 'auto'
+    setMode(saved)
+    applyTheme(saved)
+
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    const onChange = () => {
+      const current = (localStorage.getItem('theme') as Mode | null) ?? 'light'
+      if (current === 'auto') applyTheme('auto')
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
   }, [])
 
   useEffect(() => {
@@ -23,10 +36,10 @@ export function ThemeToggle() {
     return () => document.removeEventListener('mousedown', onClickOutside)
   }, [])
 
-  function apply(isDark: boolean) {
-    setDark(isDark)
-    document.documentElement.classList.toggle('dark', isDark)
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  function select(m: Mode) {
+    setMode(m)
+    localStorage.setItem('theme', m)
+    applyTheme(m)
     setOpen(false)
   }
 
@@ -34,27 +47,21 @@ export function ThemeToggle() {
     <div ref={ref} style={{ position: 'relative' }}>
       <button
         onClick={() => setOpen(o => !o)}
-        aria-label="Appearance settings"
+        aria-label="Theme settings"
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 6,
           background: 'none',
-          border: '1px solid var(--rule)',
-          borderRadius: 6,
+          border: 'none',
           cursor: 'pointer',
-          padding: '5px 10px',
-          fontSize: 12,
-          fontFamily: 'var(--font-sans)',
+          padding: 4,
           color: 'var(--ink-soft)',
-          letterSpacing: '0.03em',
         }}
       >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
-        Appearance
       </button>
 
       {open && (
@@ -67,16 +74,13 @@ export function ThemeToggle() {
           borderRadius: 8,
           padding: 5,
           zIndex: 50,
-          minWidth: 120,
+          minWidth: 110,
           boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
         }}>
-          {([
-            { label: '☀︎  Light', value: false },
-            { label: '☽  Dark',  value: true  },
-          ] as const).map(({ label, value }) => (
+          {(['light', 'dark', 'auto'] as Mode[]).map(m => (
             <button
-              key={label}
-              onClick={() => apply(value)}
+              key={m}
+              onClick={() => select(m)}
               style={{
                 display: 'block',
                 width: '100%',
@@ -87,12 +91,13 @@ export function ThemeToggle() {
                 cursor: 'pointer',
                 fontSize: 13,
                 fontFamily: 'var(--font-sans)',
-                background: dark === value ? 'var(--rule)' : 'transparent',
-                color: dark === value ? 'var(--ink)' : 'var(--ink-soft)',
-                fontWeight: dark === value ? 600 : 400,
+                background: mode === m ? 'var(--rule)' : 'transparent',
+                color: mode === m ? 'var(--ink)' : 'var(--ink-soft)',
+                fontWeight: mode === m ? 600 : 400,
+                textTransform: 'capitalize',
               }}
             >
-              {label}
+              {m}
             </button>
           ))}
         </div>

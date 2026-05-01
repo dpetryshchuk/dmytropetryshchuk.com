@@ -145,9 +145,16 @@ export default async function Home() {
 
           <TocLinks items={tocItems} />
 
-          <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6, fontSize: 14, color: 'var(--accent)', fontFamily: 'var(--font-sans)' }}>
-            <a href="https://linkedin.com/in/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
-            <a href="https://github.com/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>GitHub</a>
+          <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-sans)' }}>
+            <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 4, color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Pages</div>
+            <a href="/essays" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>Essays</a>
+            <a href="/writing" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>Monthly Newsletter</a>
+          </div>
+
+          <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-sans)' }}>
+            <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 4, color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Links</div>
+            <a href="https://linkedin.com/in/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>LinkedIn</a>
+            <a href="https://github.com/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>GitHub</a>
           </div>
         </aside>
 
