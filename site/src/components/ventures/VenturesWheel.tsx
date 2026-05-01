@@ -13,8 +13,8 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
   const { angle, pause, resume } = useOrbitalAnimation()
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
-  const primaryProjects = projects.filter(p => p.tier === 'primary')
-  const secondaryProjects = projects.filter(p => p.tier === 'secondary')
+  const primaryProjects = projects.filter(p => p.category === 'work')
+  const secondaryProjects = projects.filter(p => p.category === 'experiment')
 
   const primaryRadius = 130
   const secondaryRadius = 185
@@ -121,7 +121,7 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
               cx={pos.x}
               cy={pos.y}
               r={16}
-              fill={project.color}
+              fill={'var(--ink-faint)'}
               fillOpacity={0.4}
               stroke="white"
               strokeWidth={1}
@@ -155,7 +155,7 @@ export function VenturesWheel({ selectedProject, setSelectedProject }: Props) {
               cy={pos.y}
               r={28}
               fill="white"
-              stroke={project.color}
+              stroke={'var(--ink-faint)'}
               strokeWidth={2}
               filter={isHovered ? 'url(#node-shadow-hover)' : 'url(#node-shadow)'}
             />

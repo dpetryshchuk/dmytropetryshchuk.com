@@ -25,7 +25,7 @@ export function ProjectCard({ selectedProject, setSelectedProject }: Props) {
       </button>
 
       {/* Project name with color accent */}
-      <div style={{ borderLeft: `3px solid ${project.color}`, paddingLeft: '12px' }}>
+      <div style={{ borderLeft: `3px solid var(--rule)`, paddingLeft: '12px' }}>
         <h3 className="font-fraunces text-xl text-ink mt-0">{project.name}</h3>
         <p className="font-mono text-xs text-neutral-400 mt-1">
           {project.role}{project.role && project.dates ? ' · ' : ''}{project.dates}

@@ -1,19 +1,22 @@
 import type { Metadata } from 'next'
-import { Fraunces, Inter, IBM_Plex_Mono } from 'next/font/google'
+import { Source_Serif_4, Montserrat, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { ScrollProgress } from '@/components/ScrollProgress'
 
-const fraunces = Fraunces({
+const serif = Source_Serif_4({
   subsets: ['latin'],
-  variable: '--font-fraunces',
-  axes: ['opsz'],
+  variable: '--font-serif',
+  style: ['normal', 'italic'],
+  weight: ['400', '600'],
 })
 
-const inter = Inter({
+const sans = Montserrat({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-sans',
+  weight: ['400', '500', '600', '700'],
 })
 
-const mono = IBM_Plex_Mono({
+const mono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   weight: ['400', '500'],
@@ -27,7 +30,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${inter.variable} ${mono.variable}`}>
+      <body className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+        <ScrollProgress />
         {children}
       </body>
     </html>
