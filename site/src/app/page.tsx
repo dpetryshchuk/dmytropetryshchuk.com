@@ -231,37 +231,34 @@ export default async function Home() {
                   <div style={{ fontSize: 11, fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
                     {cat === 'work' ? 'Work' : 'Experiments'}
                   </div>
-                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 20 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                     {group.map((p) => (
-                      <li key={p.id} style={{ display: 'flex', gap: 10 }}>
-                        <span style={{ color: 'var(--ink-faint)', fontSize: 16, lineHeight: '1.5', flexShrink: 0, paddingTop: 2 }}>•</span>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ marginBottom: p.bullets.length > 0 ? 6 : 0 }}>
-                            <span style={{ fontSize: 16, fontWeight: 600, fontFamily: 'var(--font-sans)' }}>
-                              {p.name}
+                      <div key={p.id} style={{ paddingLeft: 14, borderLeft: '2px solid var(--rule)' }}>
+                        <div style={{ marginBottom: p.bullets.length > 0 ? 6 : 0 }}>
+                          <span style={{ fontSize: 16, fontWeight: 600, fontFamily: 'var(--font-sans)' }}>
+                            {p.name}
+                          </span>
+                          {p.role && (
+                            <span style={{ fontSize: 13, color: 'var(--ink-faint)', fontWeight: 400, marginLeft: 8, fontFamily: 'var(--font-sans)' }}>
+                              · {p.role}
                             </span>
-                            {p.role && (
-                              <span style={{ fontSize: 13, color: 'var(--ink-faint)', fontWeight: 400, marginLeft: 8, fontFamily: 'var(--font-sans)' }}>
-                                · {p.role}
-                              </span>
-                            )}
-                            {p.dates && (
-                              <span style={{ fontSize: 12, color: 'var(--ink-faint)', fontWeight: 400, marginLeft: 6, fontFamily: 'var(--font-sans)' }}>
-                                {p.dates}
-                              </span>
-                            )}
-                          </div>
-                          {p.bullets.length > 0 && (
-                            <ul style={{ margin: 0, padding: '0 0 0 16px', fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.7 }}>
-                              {p.bullets.map((b, bi) => (
-                                <li key={bi} style={{ marginBottom: 3 }}>{b}</li>
-                              ))}
-                            </ul>
+                          )}
+                          {p.dates && (
+                            <span style={{ fontSize: 12, color: 'var(--ink-faint)', fontWeight: 400, marginLeft: 6, fontFamily: 'var(--font-sans)' }}>
+                              {p.dates}
+                            </span>
                           )}
                         </div>
-                      </li>
+                        {p.bullets.length > 0 && (
+                          <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.7 }}>
+                            {p.bullets.map((b, bi) => (
+                              <li key={bi} style={{ marginBottom: 3 }}>{b}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )
             })}
