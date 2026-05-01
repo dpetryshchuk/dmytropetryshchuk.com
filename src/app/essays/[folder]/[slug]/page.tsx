@@ -1,17 +1,21 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getEssays, getEssay, formatEssayDate } from '@/lib/essays'
-import { ThemeToggle } from '@/components/ThemeToggle'
+import { getEssays, getEssay, getEssayParams, getBacklinks, formatEssayDate } from '@/lib/essays'
+
 
 export function generateStaticParams() {
-  return getEssays().map(e => ({ slug: e.slug }))
+  return getEssayParams()
 }
 
-export default function EssayPage({ params }: { params: { slug: string } }) {
-  const essay = getEssay(params.slug)
+export default async function EssayPage({ params }: { params: Promise<{ folder: string; slug: string }> }) {
+  const { folder, slug } = await params
+  const essay = getEssay(folder, slug)
   if (!essay) notFound()
 
   const allEssays = getEssays().sort((a, b) => b.date.localeCompare(a.date))
+  const backlinks = getBacklinks(folder, slug)
+  const currentFolder = folder
+  const currentSlug = slug
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
@@ -39,6 +43,8 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
           alignSelf: 'start',
           height: '100vh',
           overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
         }}>
           <Link href="/essays" style={{ fontSize: 11, color: 'var(--ink-faint)', textDecoration: 'none', fontFamily: 'var(--font-sans)', letterSpacing: '0.05em', display: 'block', marginBottom: 12 }}>
             ← Essays
@@ -50,12 +56,12 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 7, fontFamily: 'var(--font-sans)' }}>
             {allEssays.map(e => (
               <Link
-                key={e.slug}
-                href={`/essays/${e.slug}`}
+                key={`${e.folder}/${e.slug}`}
+                href={`/essays/${e.folder}/${e.slug}`}
                 style={{
                   fontSize: 11,
-                  color: e.slug === essay.slug ? 'var(--accent)' : 'var(--ink-faint)',
-                  fontWeight: e.slug === essay.slug ? 600 : 400,
+                  color: e.slug === currentSlug && e.folder === currentFolder ? 'var(--accent)' : 'var(--ink-faint)',
+                  fontWeight: e.slug === currentSlug && e.folder === currentFolder ? 600 : 400,
                   textDecoration: 'none',
                   lineHeight: 1.4,
                 }}
@@ -67,6 +73,7 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
         </aside>
 
         <main className="main-col" style={{ padding: '44px 52px', maxWidth: 740 }}>
+
           <div style={{
             display: 'flex',
             alignItems: 'flex-start',
@@ -94,18 +101,16 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
                   {essay.description}
                 </p>
               )}
-              {essay.tags.length > 0 && (
-                <div style={{ display: 'flex', gap: 6, marginTop: 12, flexWrap: 'wrap' }}>
-                  {essay.tags.map(tag => (
-                    <Link key={tag} href={`/essays#${tag}`} style={{ fontSize: 11, color: 'var(--ink-faint)', fontFamily: 'var(--font-sans)', textDecoration: 'none', border: '1px solid var(--rule)', padding: '2px 8px', borderRadius: 3 }}>
-                      {tag}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div style={{ flexShrink: 0, marginLeft: 16 }}>
-              <ThemeToggle />
+              <div style={{ display: 'flex', gap: 6, marginTop: 12, flexWrap: 'wrap' }}>
+                <Link href={`/essays#${essay.folder}`} style={{ fontSize: 11, color: 'var(--ink-faint)', fontFamily: 'var(--font-sans)', textDecoration: 'none', border: '1px solid var(--rule)', padding: '2px 8px', borderRadius: 3 }}>
+                  {essay.folder}
+                </Link>
+                {essay.tags.filter(tag => tag !== essay.folder).map(tag => (
+                  <span key={tag} style={{ fontSize: 11, color: 'var(--ink-faint)', fontFamily: 'var(--font-sans)', border: '1px solid var(--rule)', padding: '2px 8px', borderRadius: 3 }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -113,6 +118,25 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
             className="article-body"
             dangerouslySetInnerHTML={{ __html: essay.content }}
           />
+
+          {backlinks.length > 0 && (
+            <div style={{ marginTop: 52, borderTop: '1px solid var(--rule)', paddingTop: 20 }}>
+              <div style={{ fontSize: 10, fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 10 }}>
+                Linked from
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                {backlinks.map(b => (
+                  <Link
+                    key={`${b.folder}/${b.slug}`}
+                    href={`/essays/${b.folder}/${b.slug}`}
+                    style={{ fontSize: 14, color: 'var(--accent)', textDecoration: 'none', fontFamily: 'var(--font-sans)' }}
+                  >
+                    {b.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div style={{ marginBottom: 60 }} />
         </main>

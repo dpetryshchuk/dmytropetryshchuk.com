@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getArticles, getArticle, formatDate } from '@/lib/feed'
-import { ThemeToggle } from '@/components/ThemeToggle'
+
 
 export const revalidate = 3600
 
@@ -82,11 +82,11 @@ export default async function ArticlePage({
           </div>
         </aside>
 
-        <main style={{ padding: '44px 52px', maxWidth: 740 }}>
+        <main style={{ padding: '44px 52px', maxWidth: 740, position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 20, right: 52 }}>
+            <ThemeToggle />
+          </div>
           <div style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
             borderBottom: '1px solid var(--rule)',
             paddingBottom: 28,
             marginBottom: 40,
@@ -123,9 +123,6 @@ export default async function ArticlePage({
                   {article.description}
                 </p>
               )}
-            </div>
-            <div style={{ flexShrink: 0, marginLeft: 16 }}>
-              <ThemeToggle />
             </div>
           </div>
 

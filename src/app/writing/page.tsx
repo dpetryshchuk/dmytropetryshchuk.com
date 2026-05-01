@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getArticles, formatDate } from '@/lib/feed'
-import { ThemeToggle } from '@/components/ThemeToggle'
+
 
 export const revalidate = 3600
 
@@ -62,11 +62,11 @@ export default async function WritingPage() {
           </div>
         </aside>
 
-        <main style={{ padding: '44px 52px', maxWidth: 740 }}>
+        <main style={{ padding: '44px 52px', maxWidth: 740, position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 20, right: 52 }}>
+            <ThemeToggle />
+          </div>
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
             borderBottom: '1px solid var(--rule)',
             paddingBottom: 24,
             marginBottom: 36,
@@ -81,7 +81,6 @@ export default async function WritingPage() {
             }}>
               Building Log
             </h1>
-            <ThemeToggle />
           </div>
 
           <div>

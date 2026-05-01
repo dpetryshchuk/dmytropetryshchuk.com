@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Source_Serif_4, Montserrat, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { ScrollProgress } from '@/components/ScrollProgress'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 const serif = Source_Serif_4({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
         <ScrollProgress />
+        <ThemeToggle />
         {children}
       </body>
     </html>

@@ -3,7 +3,7 @@ import { projects } from '@/data/projects'
 import { librarySections } from '@/data/library'
 import { getArticles, formatDate } from '@/lib/feed'
 import { EmailCopy } from '@/components/EmailCopy'
-import { ThemeToggle } from '@/components/ThemeToggle'
+
 import { TocLinks } from '@/components/TocLinks'
 import { WatercolorLightbox } from '@/components/WatercolorLightbox'
 
@@ -20,6 +20,7 @@ const headingStyle: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   gap: 7,
+  width: '100%',
 }
 
 function Section({
@@ -133,15 +134,7 @@ export default async function Home() {
             flexDirection: 'column',
           }}
         >
-          <div style={{
-            fontSize: 11,
-            letterSpacing: '0.2em',
-            fontWeight: 700,
-            marginBottom: 8,
-            fontFamily: 'var(--font-sans)',
-            color: 'var(--ink-soft)',
-            textTransform: 'uppercase',
-          }}>
+          <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 8, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)', textTransform: 'uppercase' }}>
             Contents
           </div>
           <div style={{ height: 1, background: 'var(--rule)', marginBottom: 12 }} />
@@ -154,23 +147,25 @@ export default async function Home() {
             <a href="https://github.com/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>GitHub</a>
           </div>
 
-          <div style={{ marginTop: 'auto', paddingTop: 20 }}>
-            <ThemeToggle />
-          </div>
         </aside>
 
         {/* ── Main Column ─────────────────────────────────────────────── */}
-        <main className="main-col" style={{ padding: '44px 52px', maxWidth: 740 }}>
+        <main className="main-col" style={{ padding: '20px 52px', maxWidth: 740 }}>
 
           {/* 1. Bio */}
           <Section num="1" title="Bio" first collapsible defaultOpen>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px' }}>
-              I'm <strong>Dmytro Petryshchuk</strong> (or Dima) — entrepreneur, engineer, writer, and worldbuilding nerd.
+              Hi, I'm <strong>Dmytro Petryshchuk</strong> (or Dima), an entrepreneur, engineer, writer, and worldbuilding nerd.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
               I'm the founder of{' '}
               <InlineLink href="https://www.onekeyflow.com">OneKeyFlow</InlineLink>
               , an AI automation agency where I help businesses use AI, build internal tools, and automate the slow manual work holding them back. Clients include a $45m/yr ecommerce company, a $3m/yr semiconductor fab, and a $2m/yr auto transport logistics company.
+            </p>
+            <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
+              I worked at{' '}
+              <InlineLink href="https://www.midtronics.com">Midtronics</InlineLink>
+              , a $100M/yr battery technology company that develops next-generation charging, discharging, and testing equipment. There I spent three years as an embedded software engineer building these systems.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
               Before this, I worked with{' '}
@@ -179,15 +174,10 @@ export default async function Home() {
               <InlineLink href="http://valandar.com/">Valandar AI</InlineLink>
               , a Word add-in for vendor agreement lawyers.
             </p>
-            <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
-              I worked at{' '}
-              <InlineLink href="https://www.midtronics.com">Midtronics</InlineLink>
-              , a $100M/yr battery technology company that develops next-generation charging, discharging, and testing equipment. There I spent three years as an embedded software engineer building these systems.
-            </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 20px', textAlign: 'justify' }}>
               I'm a graduate of the University of Illinois at Urbana-Champaign, where I focused on neural circuits, embedded software, computer architecture, machine learning, and AI.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 16 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 18 }}>
               <p style={{ margin: 0, lineHeight: 1.75 }}>
                 My resume is{' '}
                 <a href="/resume.pdf" download style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px solid currentColor' }}>

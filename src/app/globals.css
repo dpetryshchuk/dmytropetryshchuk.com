@@ -70,6 +70,7 @@ html.dark body {
 .article-body h2 { font-size: 21px; }
 .article-body h3 { font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; }
 .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+.wikilink-broken { color: var(--ink-faint); text-decoration: underline; text-decoration-style: dashed; cursor: help; }
 .article-body ul, .article-body ol { margin: 0 0 1.3em; padding-left: 1.5em; }
 .article-body li { margin-bottom: 0.4em; }
 .article-body blockquote {
@@ -111,13 +112,13 @@ html {
 
 /* Collapsible section headings */
 details summary.section-summary {
+  display: block;
   list-style: none;
   cursor: pointer;
   outline: 1px dashed var(--ink-faint);
   padding: 7px 12px;
   margin: -7px -12px 20px;
   border-radius: 4px;
-  width: fit-content;
   transition: background 0.12s, outline-color 0.12s, opacity 0.12s;
 }
 details summary.section-summary:hover {
