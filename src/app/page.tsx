@@ -165,20 +165,12 @@ export default async function Home() {
           {/* 1. Bio */}
           <Section num="1" title="Bio" first collapsible defaultOpen>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px' }}>
-              Hey 👋, I'm <strong>Dmytro Petryshchuk</strong> (or Dima), an entrepreneur, engineer, writer, and worldbuilding nerd.
+              <strong>Dmytro Petryshchuk</strong> (or Dima) — entrepreneur, engineer, writer, and worldbuilding nerd.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
               I'm the founder of{' '}
               <InlineLink href="https://www.onekeyflow.com">OneKeyFlow</InlineLink>
-              , an AI automation agency serving businesses with outdated processes. Clients include a{' '}
-              <InlineLink href="https://www.pearlwestgroup.com">$45m/yr ecommerce company</InlineLink>
-              , a{' '}
-              <InlineLink href="https://apparenttech.com">$3m/yr semiconductor fab</InlineLink>
-              , a{' '}
-              <InlineLink href="https://greatfm.com">radio talk show host</InlineLink>
-              , and a{' '}
-              <InlineLink href="https://topautologistics.com">$2m/yr auto transport logistics company</InlineLink>
-              .
+              , an AI automation agency where I help businesses use AI, build internal tools, and automate the slow manual work holding them back. Clients include a $45m/yr ecommerce company, a $3m/yr semiconductor fab, and a $2m/yr auto transport logistics company.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
               Before this, I worked with{' '}
