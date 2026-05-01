@@ -47,6 +47,7 @@ function Section({
             <h2 style={headingStyle}>
               <span style={{ color: 'var(--ink-faint)', fontWeight: 400 }}>{num}.</span>
               {title}
+              <span className="section-arrow" style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--ink-faint)', fontWeight: 400, letterSpacing: 0, textTransform: 'none' }}>▶</span>
             </h2>
           </summary>
           <div style={{ paddingTop: 4 }}>{children}</div>
@@ -128,6 +129,8 @@ export default async function Home() {
             alignSelf: 'start',
             height: '100vh',
             overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           <div style={{
@@ -146,42 +149,20 @@ export default async function Home() {
           <TocLinks items={tocItems} />
 
           <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-sans)' }}>
-            <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 4, color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Pages</div>
+            <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 4, color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Links</div>
             <a href="/essays" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>Essays</a>
             <a href="/writing" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>Monthly Newsletter</a>
-          </div>
-
-          <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-sans)' }}>
-            <div style={{ fontSize: 10, letterSpacing: '0.2em', fontWeight: 700, marginBottom: 4, color: 'var(--ink-faint)', textTransform: 'uppercase' }}>Links</div>
             <a href="https://linkedin.com/in/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>LinkedIn</a>
             <a href="https://github.com/dpetryshchuk" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: 'var(--ink-soft)', textDecoration: 'none' }}>GitHub</a>
+          </div>
+
+          <div style={{ marginTop: 'auto', paddingTop: 20 }}>
+            <ThemeToggle />
           </div>
         </aside>
 
         {/* ── Main Column ─────────────────────────────────────────────── */}
         <main className="main-col" style={{ padding: '44px 52px', maxWidth: 740 }}>
-
-          {/* Title */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            borderBottom: '1px solid var(--rule)',
-            paddingBottom: 24,
-            marginBottom: 36,
-          }}>
-            <h1 className="site-title" style={{
-              fontSize: 44,
-              fontWeight: 700,
-              margin: 0,
-              lineHeight: 1,
-              fontFamily: 'var(--font-sans)',
-              letterSpacing: '-0.03em',
-            }}>
-              Dmytro Petryshchuk
-            </h1>
-            <ThemeToggle />
-          </div>
 
           {/* 1. Bio */}
           <Section num="1" title="Bio" first collapsible defaultOpen>

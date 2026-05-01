@@ -128,6 +128,15 @@ details summary.section-summary::-webkit-details-marker {
   display: none;
 }
 
+/* Collapsible arrow indicator */
+.section-arrow {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+details[open] > summary .section-arrow {
+  transform: rotate(90deg);
+}
+
 /* Responsive: hide sidenotes on narrow viewports */
 @media (max-width: 900px) {
   .sidenotes-col {
