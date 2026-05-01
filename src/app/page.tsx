@@ -165,7 +165,7 @@ export default async function Home() {
           {/* 1. Bio */}
           <Section num="1" title="Bio" first collapsible defaultOpen>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px' }}>
-              <strong>Dmytro Petryshchuk</strong> (or Dima) — entrepreneur, engineer, writer, and worldbuilding nerd.
+              I'm <strong>Dmytro Petryshchuk</strong> (or Dima) — entrepreneur, engineer, writer, and worldbuilding nerd.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
               I'm the founder of{' '}
@@ -180,7 +180,7 @@ export default async function Home() {
               , a Word add-in for vendor agreement lawyers.
             </p>
             <p style={{ fontSize: 18, lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
-              I also worked at{' '}
+              I worked at{' '}
               <InlineLink href="https://www.midtronics.com">Midtronics</InlineLink>
               , a $100M/yr battery technology company that develops next-generation charging, discharging, and testing equipment. There I spent three years as an embedded software engineer building these systems.
             </p>
