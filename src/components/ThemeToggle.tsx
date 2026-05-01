@@ -44,7 +44,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <div ref={ref} style={{ position: 'fixed', top: 16, right: 'max(20px, calc((100vw - 1280px) / 2 + 20px))', zIndex: 100 }}>
+    <div ref={ref} className="theme-toggle-root" style={{ position: 'fixed', top: 16, right: 'max(20px, calc((100vw - 1280px) / 2 + 20px))', zIndex: 100 }}>
       <button
         onClick={() => setOpen(o => !o)}
         aria-label="Theme settings"

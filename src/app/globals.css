@@ -171,4 +171,9 @@ details[open] > summary .section-arrow {
     gap: 2px !important;
     align-items: flex-start !important;
   }
+  /* ThemeToggle: stay within viewport on mobile */
+  .theme-toggle-root {
+    right: 12px !important;
+    top: 12px !important;
+  }
 }

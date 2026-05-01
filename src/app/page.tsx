@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 import { projects } from '@/data/projects'
 import { librarySections } from '@/data/library'
 import { getArticles, formatDate } from '@/lib/feed'
+import { getEssays, formatEssayDate } from '@/lib/essays'
+import Link from 'next/link'
 import { EmailCopy } from '@/components/EmailCopy'
 
 import { TocLinks } from '@/components/TocLinks'
@@ -100,6 +102,7 @@ const watercolors = [
 
 export default async function Home() {
   const articles = await getArticles()
+  const essays = getEssays().sort((a, b) => b.date.localeCompare(a.date))
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
@@ -271,25 +274,64 @@ export default async function Home() {
 
           {/* 5. Writing */}
           <Section num="5" title="Writing" collapsible>
-            {articles.map(article => (
-              <div
-                key={article.slug}
-                className="writing-row"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                  gap: 16,
-                  padding: '8px 0',
-                  borderBottom: '1px solid var(--rule)',
-                }}
-              >
-                <span style={{ fontSize: 15, color: 'var(--ink)' }}>{article.title}</span>
-                <span style={{ fontSize: 12, color: 'var(--ink-faint)', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)' }}>
-                  {formatDate(article.pubDate)}
-                </span>
+
+            {essays.length > 0 && (
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>
+                  Essays
+                </div>
+                {essays.map(essay => (
+                  <Link
+                    key={`${essay.folder}/${essay.slug}`}
+                    href={`/essays/${essay.folder}/${essay.slug}`}
+                    className="writing-row"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                      gap: 16,
+                      padding: '8px 0',
+                      borderBottom: '1px solid var(--rule)',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                    }}
+                  >
+                    <span style={{ fontSize: 15, color: 'var(--ink)' }}>{essay.title}</span>
+                    <span style={{ fontSize: 12, color: 'var(--ink-faint)', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)' }}>
+                      {formatEssayDate(essay.date)}
+                    </span>
+                  </Link>
+                ))}
               </div>
-            ))}
+            )}
+
+            {articles.length > 0 && (
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>
+                  Newsletter
+                </div>
+                {articles.map(article => (
+                  <div
+                    key={article.slug}
+                    className="writing-row"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                      gap: 16,
+                      padding: '8px 0',
+                      borderBottom: '1px solid var(--rule)',
+                    }}
+                  >
+                    <span style={{ fontSize: 15, color: 'var(--ink)' }}>{article.title}</span>
+                    <span style={{ fontSize: 12, color: 'var(--ink-faint)', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)' }}>
+                      {formatDate(article.pubDate)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
           </Section>
 
           <div style={{ marginBottom: 60 }} />

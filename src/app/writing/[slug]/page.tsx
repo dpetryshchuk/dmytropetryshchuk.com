@@ -23,7 +23,7 @@ export default async function ArticlePage({
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
-      <div style={{
+      <div className="site-grid" style={{
         maxWidth: 1280,
         margin: '0 auto',
         display: 'grid',
@@ -82,10 +82,7 @@ export default async function ArticlePage({
           </div>
         </aside>
 
-        <main style={{ padding: '44px 52px', maxWidth: 740, position: 'relative' }}>
-          <div style={{ position: 'absolute', top: 20, right: 52 }}>
-            <ThemeToggle />
-          </div>
+        <main className="main-col" style={{ padding: '44px 52px', maxWidth: 740 }}>
           <div style={{
             borderBottom: '1px solid var(--rule)',
             paddingBottom: 28,
