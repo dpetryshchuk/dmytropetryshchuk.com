@@ -128,4 +128,24 @@ details summary.section-summary::-webkit-details-marker {
   .toc-col {
     display: none;
   }
+  .site-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .main-col {
+    padding: 28px 20px !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  .site-title {
+    font-size: 26px !important;
+    letter-spacing: -0.02em !important;
+  }
+  .watercolor-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .writing-row {
+    flex-direction: column !important;
+    gap: 2px !important;
+    align-items: flex-start !important;
+  }
 }

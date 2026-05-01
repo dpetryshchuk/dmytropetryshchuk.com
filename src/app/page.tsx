@@ -5,6 +5,7 @@ import { getArticles, formatDate } from '@/lib/feed'
 import { EmailCopy } from '@/components/EmailCopy'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { TocLinks } from '@/components/TocLinks'
+import { WatercolorLightbox } from '@/components/WatercolorLightbox'
 
 // ── Primitives ────────────────────────────────────────────────────────────────
 
@@ -100,7 +101,7 @@ export default async function Home() {
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
-      <div style={{
+      <div className="site-grid" style={{
         maxWidth: 1280,
         margin: '0 auto',
         display: 'grid',
@@ -151,7 +152,7 @@ export default async function Home() {
         </aside>
 
         {/* ── Main Column ─────────────────────────────────────────────── */}
-        <main style={{ padding: '44px 52px', maxWidth: 740 }}>
+        <main className="main-col" style={{ padding: '44px 52px', maxWidth: 740 }}>
 
           {/* Title */}
           <div style={{
@@ -162,7 +163,7 @@ export default async function Home() {
             paddingBottom: 24,
             marginBottom: 36,
           }}>
-            <h1 style={{
+            <h1 className="site-title" style={{
               fontSize: 44,
               fontWeight: 700,
               margin: 0,
@@ -297,27 +298,7 @@ export default async function Home() {
 
           {/* 4. Watercolors */}
           <Section num="4" title="Watercolors" collapsible>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
-              {watercolors.map(({ src, label }) => (
-                <div key={src} style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={src}
-                    alt={label}
-                    style={{
-                      width: '100%',
-                      aspectRatio: '1 / 1.25',
-                      objectFit: 'cover',
-                      display: 'block',
-                      border: '1px solid var(--rule)',
-                    }}
-                  />
-                  <div style={{ fontSize: 12, color: 'var(--ink-faint)', textAlign: 'center', fontFamily: 'var(--font-sans)' }}>
-                    {label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <WatercolorLightbox watercolors={watercolors} />
           </Section>
 
           {/* 5. Writing */}
@@ -325,6 +306,7 @@ export default async function Home() {
             {articles.map(article => (
               <div
                 key={article.slug}
+                className="writing-row"
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
