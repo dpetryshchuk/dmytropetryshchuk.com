@@ -23,10 +23,10 @@ export default function LibraryPage() {
                 ({section.items.length})
               </span>
             </div>
-            {section.items.map((item, i) => {
+            {section.items.map((item) => {
               const url = coverUrl(item)
               return (
-                <div key={i} style={{ display: 'flex', gap: 12, padding: url ? '8px 0' : '6px 0', borderBottom: '1px solid var(--rule)', alignItems: 'center' }}>
+                <div key={item.title} style={{ display: 'flex', gap: 12, padding: url ? '8px 0' : '6px 0', borderBottom: '1px solid var(--rule)', alignItems: 'center' }}>
                   {url && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={url} alt="" width={34} height={50} style={{ objectFit: 'cover', flexShrink: 0, opacity: 0.92 }} />

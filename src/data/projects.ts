@@ -1,8 +1,8 @@
 export interface Project {
   id: string
   name: string
-  role: string
-  dates: string
+  role?: string
+  dates?: string
   bullets: string[]
   category: 'work' | 'experiment'
 }
