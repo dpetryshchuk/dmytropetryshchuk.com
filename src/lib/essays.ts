@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { marked } from 'marked'
 
 const ESSAYS_DIR = path.join(process.cwd(), 'content/essays')
+const PAGES_DIR = path.join(process.cwd(), 'content/pages')
 
 export interface TocEntry {
   level: number   // 1 = h2, 2 = h3, 3 = h4
@@ -182,6 +183,40 @@ export function getBacklinks(targetFolder: string, targetSlug: string): Pick<Ess
   }
 
   return backlinks
+}
+
+export function getPage(slug: string): Essay | undefined {
+  const filePath = path.join(PAGES_DIR, `${slug}.md`)
+  if (!fs.existsSync(filePath)) return undefined
+  const { data, content } = matter(fs.readFileSync(filePath, 'utf-8'))
+  const raw: RawEssay = {
+    slug,
+    folder: 'pages',
+    title: data.title ?? slug,
+    date: data.date ? String(data.date) : '',
+    tags: Array.isArray(data.tags) ? data.tags : [],
+    description: data.description ?? '',
+    abstract: data.abstract ?? undefined,
+    status: data.status ?? 'finished',
+    rawContent: content,
+  }
+  const raws = getAllRaw()
+  const index = buildIndex(raws)
+  const resolved = resolveWikilinks(raw.rawContent, raws, index)
+  const rawHtml = marked(resolved) as string
+  const { html, toc } = extractToc(rawHtml)
+  return {
+    slug: raw.slug,
+    folder: raw.folder,
+    title: raw.title,
+    date: raw.date,
+    tags: raw.tags,
+    description: raw.description,
+    abstract: raw.abstract,
+    status: raw.status,
+    content: html,
+    toc,
+  }
 }
 
 export function formatEssayDate(date: string): string {

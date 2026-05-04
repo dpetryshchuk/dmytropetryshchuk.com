@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getEssay, formatEssayDate } from '@/lib/essays'
+import { getPage, formatEssayDate } from '@/lib/essays'
 import type { TocEntry } from '@/lib/essays'
 
 function Toc({ entries }: { entries: TocEntry[] }) {
@@ -36,7 +36,7 @@ function Toc({ entries }: { entries: TocEntry[] }) {
 }
 
 export default function ProjectsPage() {
-  const essay = getEssay('projects', 'projects')
+  const essay = getPage('projects')
   if (!essay) notFound()
 
   const hasToc = essay.toc.length > 0

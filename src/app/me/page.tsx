@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { getEssay } from '@/lib/essays'
+import { getPage } from '@/lib/essays'
 import { EmailCopy } from '@/components/EmailCopy'
 
 export default function MePage() {
-  const essay = getEssay('about', 'about')
+  const essay = getPage('me')
   if (!essay) notFound()
 
   return (
