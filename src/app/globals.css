@@ -186,7 +186,7 @@ details[open] > summary .section-arrow {
   align-items: start;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .essay-index-grid {
     grid-template-columns: 1fr;
   }
