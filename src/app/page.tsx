@@ -96,16 +96,8 @@ export default function Home() {
           {/* About */}
           <div>
             <SectionHeader>About</SectionHeader>
-            <p style={{ fontSize: '0.9em', lineHeight: 1.65, margin: '0 0 0.85em' }}>
-              Entrepreneur, engineer, writer. Founder of{' '}
-              <a href="https://onekeyflow.com">OneKeyFlow</a>, an AI automation agency.
-            </p>
-            <p style={{ fontSize: '0.9em', lineHeight: 1.65, margin: '0 0 0.85em' }}>
-              Previously embedded software at Midtronics, AI research at FairQuanta.
-              UIUC graduate.
-            </p>
             <p style={{ margin: 0 }}>
-              <Link href="/about" style={{ fontSize: '0.85em' }}>Full bio →</Link>
+              <Link href="/about" style={{ fontSize: '0.85em' }}>Full bio</Link>
             </p>
           </div>
 
