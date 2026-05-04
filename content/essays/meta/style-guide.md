@@ -3,6 +3,7 @@ title: "Style Guide"
 date: "2026-04-30"
 tags: ["meta"]
 description: "How I write on this site — formatting, tone, conventions."
+abstract: "Documents the writing conventions, tone, and formatting rules I use across all essays on this site. A living reference that I update as my style evolves."
 status: "in-progress"
 ---
 

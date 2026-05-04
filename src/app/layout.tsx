@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 ['/about',      'Me',          false],
                 ['/projects',   'Projects',    false],
                 ['/library',    'Library',     false],
-                ['https://dmytropetryshchuk.beehiiv.com', 'Newsletter', true],
+                ['https://building-log.beehiiv.com', 'Newsletter', true],
               ] as const).map(([href, label, external]) => (
                 <Link key={href} href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})} style={{
                   height: 64,

@@ -5,6 +5,13 @@ import { marked } from 'marked'
 
 const ESSAYS_DIR = path.join(process.cwd(), 'content/essays')
 
+export interface TocEntry {
+  level: number   // 1 = h2, 2 = h3, 3 = h4
+  text: string
+  id: string
+  number: string  // e.g. "1", "1.1", "2.3"
+}
+
 export interface Essay {
   slug: string
   folder: string
@@ -12,8 +19,10 @@ export interface Essay {
   date: string
   tags: string[]
   description: string
+  abstract?: string
   status: 'draft' | 'in-progress' | 'finished'
   content: string
+  toc: TocEntry[]
 }
 
 interface RawEssay {
@@ -23,6 +32,7 @@ interface RawEssay {
   date: string
   tags: string[]
   description: string
+  abstract?: string
   status: 'draft' | 'in-progress' | 'finished'
   rawContent: string
 }
@@ -54,6 +64,7 @@ function readRaw(folder: string, slug: string): RawEssay | undefined {
     date: data.date ? String(data.date) : '',
     tags: Array.isArray(data.tags) ? data.tags : [],
     description: data.description ?? '',
+    abstract: data.abstract ?? undefined,
     status: data.status ?? 'draft',
     rawContent: content,
   }
@@ -65,7 +76,6 @@ function getAllRaw(): RawEssay[] {
     .filter(Boolean) as RawEssay[]
 }
 
-// Index keyed by: title (lowercase), slug, folder/slug
 function buildIndex(raws: RawEssay[]): Map<string, { folder: string; slug: string }> {
   const index = new Map<string, { folder: string; slug: string }>()
   for (const e of raws) {
@@ -76,7 +86,6 @@ function buildIndex(raws: RawEssay[]): Map<string, { folder: string; slug: strin
   return index
 }
 
-// [[wikilink]] → markdown link, or broken-link span
 function resolveWikilinks(content: string, raws: RawEssay[], index: Map<string, { folder: string; slug: string }>): string {
   return content.replace(/\[\[([^\]]+)\]\]/g, (_, ref) => {
     const trimmed = ref.trim()
@@ -89,7 +98,43 @@ function resolveWikilinks(content: string, raws: RawEssay[], index: Map<string, 
   })
 }
 
+function headingId(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
+// Extracts h2/h3/h4 headings as TOC entries and injects id attributes into the HTML.
+// h2 → level 1, h3 → level 2, h4 → level 3
+function extractToc(html: string): { html: string; toc: TocEntry[] } {
+  const raw: { level: number; text: string; id: string }[] = []
+
+  const withIds = html.replace(/<h([2-4])>(.*?)<\/h\1>/gi, (_, levelStr, inner) => {
+    const level = parseInt(levelStr) - 1
+    const text = inner.replace(/<[^>]+>/g, '')
+    const id = headingId(text)
+    raw.push({ level, text, id })
+    return `<h${levelStr} id="${id}">${inner}</h${levelStr}>`
+  })
+
+  const counters = [0, 0, 0]
+  const toc: TocEntry[] = raw.map(entry => {
+    const idx = entry.level - 1
+    counters[idx]++
+    for (let i = idx + 1; i < counters.length; i++) counters[i] = 0
+    return { ...entry, number: counters.slice(0, entry.level).join('.') }
+  })
+
+  return { html: withIds, toc }
+}
+
 function renderEssay(raw: RawEssay, raws: RawEssay[], index: Map<string, { folder: string; slug: string }>): Essay {
+  const resolved = resolveWikilinks(raw.rawContent, raws, index)
+  const rawHtml = marked(resolved) as string
+  const { html, toc } = extractToc(rawHtml)
+
   return {
     slug: raw.slug,
     folder: raw.folder,
@@ -97,8 +142,10 @@ function renderEssay(raw: RawEssay, raws: RawEssay[], index: Map<string, { folde
     date: raw.date,
     tags: raw.tags,
     description: raw.description,
+    abstract: raw.abstract,
     status: raw.status,
-    content: marked(resolveWikilinks(raw.rawContent, raws, index)) as string,
+    content: html,
+    toc,
   }
 }
 

@@ -1,9 +1,42 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getEssay, getEssayParams, getBacklinks, formatEssayDate } from '@/lib/essays'
+import type { TocEntry } from '@/lib/essays'
 
 export function generateStaticParams() {
   return getEssayParams()
+}
+
+function Toc({ entries }: { entries: TocEntry[] }) {
+  return (
+    <nav aria-label="Table of contents" style={{ fontSize: '0.82em', lineHeight: 1.9 }}>
+      {entries.map(entry => (
+        <div key={entry.id} style={{
+          paddingLeft: (entry.level - 1) * 14,
+          display: 'flex',
+          gap: 8,
+          alignItems: 'baseline',
+        }}>
+          <span style={{
+            color: 'var(--ink-faint)',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.9em',
+            flexShrink: 0,
+            minWidth: 28,
+          }}>
+            {entry.number}
+          </span>
+          <a href={`#${entry.id}`} style={{
+            fontWeight: entry.level === 1 ? 700 : 400,
+            color: entry.level === 1 ? 'var(--ink)' : 'var(--ink-soft)',
+            textDecoration: 'none',
+          }}>
+            {entry.text}
+          </a>
+        </div>
+      ))}
+    </nav>
+  )
 }
 
 export default async function EssayPage({ params }: { params: Promise<{ folder: string; slug: string }> }) {
@@ -12,6 +45,8 @@ export default async function EssayPage({ params }: { params: Promise<{ folder: 
   if (!essay) notFound()
 
   const backlinks = getBacklinks(folder, slug)
+  const hasToc = essay.toc.length > 0
+  const hasAbstract = !!essay.abstract
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
@@ -62,19 +97,41 @@ export default async function EssayPage({ params }: { params: Promise<{ folder: 
             letterSpacing: '0.02em',
           }}>
             {formatEssayDate(essay.date)}
-            {essay.status !== 'finished' && (
-              <span> · {essay.status}</span>
-            )}
+            {essay.status !== 'finished' && <span> · {essay.status}</span>}
           </p>
         </header>
 
-        {/* ── Separator ───────────────────────────────────────────────────────── */}
-        <div style={{
-          border: '1px solid var(--rule)',
-          background: 'var(--paper-deep)',
-          height: 24,
-          marginBottom: 36,
-        }} />
+        {/* ── TOC + Abstract ──────────────────────────────────────────────────── */}
+        {(hasToc || hasAbstract) ? (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: hasToc && hasAbstract ? '2fr 3fr' : '1fr',
+            gap: 20,
+            marginBottom: 36,
+          }}>
+            {hasToc && <Toc entries={essay.toc} />}
+            {hasAbstract && (
+              <div style={{
+                border: '1px solid var(--rule)',
+                background: 'var(--paper-deep)',
+                padding: '16px 20px',
+                fontSize: '0.95em',
+                lineHeight: 1.65,
+                fontStyle: 'italic',
+                color: 'var(--ink)',
+              }}>
+                {essay.abstract}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div style={{
+            border: '1px solid var(--rule)',
+            background: 'var(--paper-deep)',
+            height: 24,
+            marginBottom: 36,
+          }} />
+        )}
 
         {/* ── Body ────────────────────────────────────────────────────────────── */}
         <div
