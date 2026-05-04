@@ -37,8 +37,10 @@ export default function Home() {
         {/* ── Intro ──────────────────────────────────────────────────────────── */}
         <p style={{ margin: '0 0 1.6em', lineHeight: 1.65 }}>
           Hey, I&apos;m Dmytro (or Dima). This is my site where I write and host some ideas about
-          philosophy, business, and craft.{' '}
-          Find my full bio <Link href="/about">here</Link>.{' '}
+          philosophy, business, and craft.
+          <br />
+          Find my full bio <Link href="/about">here</Link>.
+          <br />
           Email me at <EmailCopy />.
         </p>
 
