@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getEssays } from '@/lib/essays'
 import type { Essay } from '@/lib/essays'
+import { EmailCopy } from '@/components/EmailCopy'
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
@@ -32,6 +33,14 @@ export default function Home() {
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
       <div style={{ maxWidth: 895, margin: '0 auto', padding: '0 24px 80px' }}>
+
+        {/* ── Intro ──────────────────────────────────────────────────────────── */}
+        <p style={{ margin: '0 0 1.6em', lineHeight: 1.65 }}>
+          Hey, I&apos;m Dmytro (or Dima). This is my site where I write and host some ideas about
+          philosophy, consciousness, business, and craft.{' '}
+          Find my full bio <Link href="/about">here</Link>.{' '}
+          Email me at <EmailCopy />.
+        </p>
 
         {/* ── Three-column index ─────────────────────────────────────────────── */}
         <div className="home-columns">
