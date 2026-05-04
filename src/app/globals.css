@@ -160,13 +160,14 @@ a:visited { color: var(--visited); }
 
 /* ── Site logo ─────────────────────────────────────────────────────────────── */
 
-.site-logo {
+a.site-logo,
+a.site-logo:visited {
   color: var(--ink-faint);
   border-color: var(--rule);
   transition: color 0.15s, border-color 0.15s;
 }
 
-.site-logo:hover {
+a.site-logo:hover {
   color: var(--ink);
   border-color: var(--ink);
 }
