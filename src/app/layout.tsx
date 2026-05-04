@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <nav style={{ display: 'flex', flexWrap: 'wrap' }}>
               {([
-                ['/about',      'Me',          false],
+                ['/me',         'Me',          false],
                 ['/projects',   'Projects',    false],
                 ['/library',    'Library',     false],
                 ['https://building-log.beehiiv.com', 'Newsletter', true],

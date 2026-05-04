@@ -39,7 +39,7 @@ export default function Home() {
           Hey, I&apos;m Dmytro (or Dima). This is my site where I write and host some ideas about
           philosophy, business, and craft.
           <br />
-          Find my full bio <Link href="/about">here</Link>.
+          Find my full bio <Link href="/me">here</Link>.
           <br />
           Email me at <EmailCopy />.
         </p>
@@ -97,7 +97,7 @@ export default function Home() {
           <div>
             <SectionHeader>About</SectionHeader>
             <p style={{ margin: 0 }}>
-              <Link href="/about" style={{ fontSize: '0.85em' }}>Full bio</Link>
+              <Link href="/me" style={{ fontSize: '0.85em' }}>Full bio</Link>
             </p>
           </div>
 

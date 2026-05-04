@@ -1,9 +1,8 @@
 ---
 title: "Projects"
 date: "2026-05-04"
-tags: ["projects"]
-description: "What I've built — work, experiments, and everything in between."
-abstract: "A running log of everything I've shipped or attempted. Organized by seriousness: client work and jobs first, then experiments."
+tags: ["meta"]
+abstract: "This is basically a resume blob split into work as well as side-projecst I've worked on."
 status: "in-progress"
 ---
 
