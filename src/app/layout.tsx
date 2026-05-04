@@ -1,20 +1,18 @@
 import type { Metadata } from 'next'
-import { Source_Serif_4, Montserrat, JetBrains_Mono } from 'next/font/google'
+import { Source_Serif_4, Source_Sans_3, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
-import { ScrollProgress } from '@/components/ScrollProgress'
-import { ThemeToggle } from '@/components/ThemeToggle'
 
 const serif = Source_Serif_4({
   subsets: ['latin'],
   variable: '--font-serif',
   style: ['normal', 'italic'],
-  weight: ['400', '600'],
+  weight: ['300', '400', '600'],
 })
 
-const sans = Montserrat({
+const sans = Source_Sans_3({
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
 })
 
 const mono = JetBrains_Mono({
@@ -32,8 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
-        <ScrollProgress />
-        <ThemeToggle />
         {children}
       </body>
     </html>
