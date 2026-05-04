@@ -17,86 +17,72 @@ export default async function EssayPage({ params }: { params: Promise<{ folder: 
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
       <div style={{ maxWidth: 680, margin: '0 auto', padding: '20px 24px 80px' }}>
 
-        {/* ── Essay header ────────────────────────────────────────────────── */}
-        <header style={{ marginBottom: 40, borderBottom: '1px solid var(--rule)', paddingBottom: 24 }}>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 12 }}>
-            <span style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.6em',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-faint)',
-            }}>
-              {formatEssayDate(essay.date)}
-            </span>
-            {essay.status !== 'finished' && (
-              <span style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.55em',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-faint)',
-                border: '1px solid var(--rule)',
-                padding: '1px 6px',
-              }}>
-                {essay.status}
-              </span>
-            )}
-          </div>
-
+        {/* ── Header ──────────────────────────────────────────────────────────── */}
+        <header style={{ textAlign: 'center', marginBottom: 28 }}>
           <h1 style={{
-            margin: '0 0 12px',
-            fontSize: '1.6em',
-            fontWeight: 400,
-            lineHeight: 1.25,
             fontFamily: 'var(--font-serif)',
+            fontVariant: 'small-caps',
+            fontSize: '2.2em',
+            fontWeight: 700,
+            lineHeight: 1.2,
             color: 'var(--ink)',
+            margin: '0 0 0.45em',
           }}>
             {essay.title}
           </h1>
 
+          {essay.tags.length > 0 && (
+            <p style={{ margin: '0 0 0.45em', fontSize: '0.88em' }}>
+              {essay.tags.map((tag, i) => (
+                <span key={tag}>
+                  {i > 0 && <span style={{ color: 'var(--ink-faint)' }}>, </span>}
+                  <Link href={`/#${tag}`} style={{ fontStyle: 'italic' }}>{tag}</Link>
+                </span>
+              ))}
+            </p>
+          )}
+
           {essay.description && (
-            <p style={{ margin: '0 0 12px', fontSize: '0.95em', color: 'var(--ink-soft)', lineHeight: 1.5 }}>
+            <p style={{
+              margin: '0 0 0.7em',
+              fontStyle: 'italic',
+              fontSize: '0.97em',
+              lineHeight: 1.55,
+              color: 'var(--ink-soft)',
+            }}>
               {essay.description}
             </p>
           )}
 
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            <Link href={`/#${essay.folder}`} style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.6em',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-faint)',
-              textDecoration: 'none',
-              border: '1px solid var(--rule)',
-              padding: '2px 8px',
-            }}>
-              {essay.folder}
-            </Link>
-            {essay.tags.filter(t => t !== essay.folder).map(tag => (
-              <span key={tag} style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.6em',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-faint)',
-                border: '1px solid var(--rule)',
-                padding: '2px 8px',
-              }}>
-                {tag}
-              </span>
-            ))}
-          </div>
+          <p style={{
+            margin: 0,
+            fontSize: '0.75em',
+            fontFamily: 'var(--font-sans)',
+            color: 'var(--ink-faint)',
+            letterSpacing: '0.02em',
+          }}>
+            {formatEssayDate(essay.date)}
+            {essay.status !== 'finished' && (
+              <span> · {essay.status}</span>
+            )}
+          </p>
         </header>
 
-        {/* ── Body ────────────────────────────────────────────────────────── */}
+        {/* ── Separator ───────────────────────────────────────────────────────── */}
+        <div style={{
+          border: '1px solid var(--rule)',
+          background: 'var(--paper-deep)',
+          height: 24,
+          marginBottom: 36,
+        }} />
+
+        {/* ── Body ────────────────────────────────────────────────────────────── */}
         <div
           className="article-body"
           dangerouslySetInnerHTML={{ __html: essay.content }}
         />
 
-        {/* ── Backlinks ───────────────────────────────────────────────────── */}
+        {/* ── Backlinks ───────────────────────────────────────────────────────── */}
         {backlinks.length > 0 && (
           <div style={{ marginTop: 52, borderTop: '1px solid var(--rule)', paddingTop: 20 }}>
             <div style={{

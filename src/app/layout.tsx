@@ -46,13 +46,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <nav style={{ display: 'flex', flexWrap: 'wrap' }}>
               {([
-                ['/',           'Site'      ],
-                ['/about',      'Me'        ],
-                ['/projects',   'Projects'  ],
-                ['/library',    'Library'   ],
-                ['/writing',    'Newsletter'],
-              ] as const).map(([href, label]) => (
-                <Link key={href} href={href} style={{
+                ['/about',      'Me',          false],
+                ['/projects',   'Projects',    false],
+                ['/library',    'Library',     false],
+                ['https://dmytropetryshchuk.beehiiv.com', 'Newsletter', true],
+              ] as const).map(([href, label, external]) => (
+                <Link key={href} href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})} style={{
                   height: 64,
                   padding: '0 20px',
                   display: 'flex', alignItems: 'center',
