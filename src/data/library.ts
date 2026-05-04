@@ -22,13 +22,13 @@ export const librarySections: LibrarySection[] = [
   {
     label: 'Philosophy & Spirituality',
     items: [
-      { title: 'Meditations',                       author: 'Marcus Aurelius',        type: 'book', coverId: 13202688 },
+      { title: 'Meditations',                       author: 'Marcus Aurelius',        type: 'book', isbn: '9780812968255' },
       { title: 'Siddhartha',                        author: 'Hermann Hesse',          type: 'book', coverId: 6562535  },
       { title: 'The Little Prince',                 author: 'Antoine de Saint-Exupéry', type: 'book', coverId: 10746692 },
       { title: "Man's Search for Meaning",          author: 'Viktor Frankl',          type: 'book', coverId: 11203708 },
       { title: 'The Untethered Soul',               author: 'Michael Singer',         type: 'book', coverId: 10630553 },
       { title: "The Heart of the Buddha's Teachings", author: 'Thich Nhat Hanh',     type: 'book', coverId: 527670   },
-      { title: 'The Way to Love',                   author: 'Anthony de Mello',       type: 'book', isbn: '1582882398' },
+      { title: 'The Way to Love',                   author: 'Anthony de Mello',       type: 'book', isbn: '9780385249393' },
     ],
   },
   {
@@ -58,7 +58,7 @@ export const librarySections: LibrarySection[] = [
   {
     label: 'Mastery & Skill',
     items: [
-      { title: 'Mastery',                           author: 'Robert Greene',          type: 'book', coverId: 10526598 },
+      { title: 'Mastery',                           author: 'Robert Greene',          type: 'book', coverId: 7561012  },
     ],
   },
   {
