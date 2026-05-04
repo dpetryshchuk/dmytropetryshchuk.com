@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { projects } from '@/data/projects'
-import { librarySections } from '@/data/library'
+import { librarySections, coverUrl } from '@/data/library'
 import { getArticles, formatDate } from '@/lib/feed'
 import { getEssays, formatEssayDate } from '@/lib/essays'
 import Link from 'next/link'
@@ -249,19 +249,31 @@ export default async function Home() {
                   </span>
                 </div>
                 <div>
-                  {section.items.map((item, i) => (
-                    <div key={i} style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr auto',
-                      columnGap: 16,
-                      padding: '6px 0',
-                      borderBottom: '1px solid var(--rule)',
-                      alignItems: 'baseline',
-                    }}>
-                      <span style={{ fontSize: 16, color: 'var(--ink)' }}>{item.title}</span>
-                      <span style={{ fontSize: 12, color: 'var(--ink-faint)', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)' }}>{item.author}</span>
-                    </div>
-                  ))}
+                  {section.items.map((item, i) => {
+                    const url = coverUrl(item)
+                    return (
+                      <div key={i} style={{
+                        display: 'flex',
+                        gap: 12,
+                        padding: url ? '8px 0' : '6px 0',
+                        borderBottom: '1px solid var(--rule)',
+                        alignItems: 'center',
+                      }}>
+                        {url && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={url}
+                            alt=""
+                            width={34}
+                            height={50}
+                            style={{ objectFit: 'cover', flexShrink: 0, display: 'block', opacity: 0.92 }}
+                          />
+                        )}
+                        <span style={{ flex: 1, fontSize: 16, color: 'var(--ink)' }}>{item.title}</span>
+                        <span style={{ fontSize: 12, color: 'var(--ink-faint)', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)' }}>{item.author}</span>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             ))}
