@@ -4,14 +4,7 @@ import { librarySections, coverUrl } from '@/data/library'
 export default function LibraryPage() {
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 700, margin: '0 auto', padding: '48px 32px 80px' }}>
-
-        <Link
-          href="/"
-          style={{ fontSize: 12, color: 'var(--ink-faint)', textDecoration: 'none', fontFamily: 'var(--font-sans)', display: 'block', marginBottom: 40 }}
-        >
-          ← Dmytro Petryshchuk
-        </Link>
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '20px 32px 80px' }}>
 
         {librarySections.map(section => (
           <div key={section.label} style={{ marginBottom: 36 }}>

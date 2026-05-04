@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Source_Serif_4, Source_Sans_3, JetBrains_Mono } from 'next/font/google'
+import Link from 'next/link'
 import './globals.css'
 
 const serif = Source_Serif_4({
@@ -30,6 +31,47 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+        <div style={{ maxWidth: 895, margin: '0 auto', padding: '24px 24px 0' }}>
+          <div style={{ display: 'flex', marginBottom: 28 }}>
+            <Link href="/" style={{
+              width: 64, height: 64, flexShrink: 0,
+              border: '1px solid var(--ink)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '2.4em',
+              color: 'var(--ink)',
+              textDecoration: 'none',
+              userSelect: 'none',
+            }}>
+              𝔇
+            </Link>
+            <nav style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {([
+                ['/',           'Site'      ],
+                ['/about',      'Me'        ],
+                ['/projects',   'Projects'  ],
+                ['/library',    'Library'   ],
+                ['/writing',    'Newsletter'],
+              ] as const).map(([href, label]) => (
+                <Link key={href} href={href} style={{
+                  height: 64,
+                  padding: '0 20px',
+                  display: 'flex', alignItems: 'center',
+                  border: '1px solid var(--rule)',
+                  marginLeft: '-1px',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.65em',
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-soft)',
+                  textDecoration: 'none',
+                }}>
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
         {children}
       </body>
     </html>

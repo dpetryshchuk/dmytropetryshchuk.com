@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { EmailCopy } from '@/components/EmailCopy'
 
 function InlineLink({ href, children }: { href: string; children: React.ReactNode }) {
@@ -15,14 +14,7 @@ function InlineLink({ href, children }: { href: string; children: React.ReactNod
 export default function AboutPage() {
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 640, margin: '0 auto', padding: '48px 32px 80px' }}>
-
-        <Link
-          href="/"
-          style={{ fontSize: 12, color: 'var(--ink-faint)', textDecoration: 'none', fontFamily: 'var(--font-sans)', display: 'block', marginBottom: 40 }}
-        >
-          ← Dmytro Petryshchuk
-        </Link>
+      <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 32px 80px' }}>
 
         <div style={{ fontSize: 18, lineHeight: 1.75, color: 'var(--ink)' }}>
           <p style={{ margin: '0 0 16px' }}>

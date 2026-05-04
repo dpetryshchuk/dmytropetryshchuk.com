@@ -15,21 +15,7 @@ export default async function EssayPage({ params }: { params: Promise<{ folder: 
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 680, margin: '0 auto', padding: '40px 24px 80px' }}>
-
-        {/* ── Back link ───────────────────────────────────────────────────── */}
-        <div style={{ marginBottom: 32 }}>
-          <Link href="/" style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '0.65em',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: 'var(--ink-faint)',
-            textDecoration: 'none',
-          }}>
-            ← Dmytro Petryshchuk
-          </Link>
-        </div>
+      <div style={{ maxWidth: 680, margin: '0 auto', padding: '20px 24px 80px' }}>
 
         {/* ── Essay header ────────────────────────────────────────────────── */}
         <header style={{ marginBottom: 40, borderBottom: '1px solid var(--rule)', paddingBottom: 24 }}>

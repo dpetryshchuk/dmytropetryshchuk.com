@@ -34,18 +34,6 @@ export default async function WritingPage() {
           height: '100vh',
           overflowY: 'auto',
         }}>
-          <Link href="/" style={{
-            fontSize: 11,
-            color: 'var(--ink-faint)',
-            textDecoration: 'none',
-            fontFamily: 'var(--font-sans)',
-            letterSpacing: '0.05em',
-            display: 'block',
-            marginBottom: 12,
-          }}>
-            ← Home
-          </Link>
-          <div style={{ height: 1, background: 'var(--rule)', marginBottom: 12 }} />
           <div style={{ fontSize: 10, letterSpacing: '0.28em', fontVariant: 'small-caps', fontWeight: 600, marginBottom: 10, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)' }}>
             Posts
           </div>

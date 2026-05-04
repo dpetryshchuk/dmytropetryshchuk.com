@@ -31,47 +31,7 @@ export default function Home() {
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 895, margin: '0 auto', padding: '24px 24px 80px' }}>
-
-        {/* ── Logo + Nav ─────────────────────────────────────────────────────── */}
-        <div style={{ display: 'flex', marginBottom: 28 }}>
-          <div style={{
-            width: 64, height: 64, flexShrink: 0,
-            border: '1px solid var(--ink)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '2.4em',
-            color: 'var(--ink)',
-            userSelect: 'none',
-          }}>
-            𝔇
-          </div>
-          <nav style={{ display: 'flex', flex: 1, flexWrap: 'wrap' }}>
-            {([
-              ['/',           'Site'      ],
-              ['/about',      'Me'        ],
-              ['/projects',   'Projects'  ],
-              ['/library',    'Library'   ],
-              ['/writing',    'Newsletter'],
-            ] as const).map(([href, label]) => (
-              <Link key={href} href={href} style={{
-                height: 64,
-                padding: '0 20px',
-                display: 'flex', alignItems: 'center',
-                border: '1px solid var(--rule)',
-                marginLeft: '-1px',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.65em',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-soft)',
-                textDecoration: 'none',
-              }}>
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+      <div style={{ maxWidth: 895, margin: '0 auto', padding: '0 24px 80px' }}>
 
         {/* ── Intro ──────────────────────────────────────────────────────────── */}
         <p style={{ margin: '0 0 1.6em', lineHeight: 1.65 }}>
