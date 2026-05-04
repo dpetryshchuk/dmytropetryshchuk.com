@@ -2,6 +2,23 @@ import Link from 'next/link'
 import { getEssays } from '@/lib/essays'
 import type { Essay } from '@/lib/essays'
 
+function SectionHeader({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{
+      fontFamily: 'var(--font-serif)',
+      fontVariant: 'small-caps',
+      fontSize: '1.15em',
+      fontWeight: 700,
+      color: 'var(--ink)',
+      paddingBottom: 5,
+      borderBottom: '1px solid var(--rule)',
+      marginBottom: 12,
+    }}>
+      {children}
+    </div>
+  )
+}
+
 export default function Home() {
   const essays = getEssays().sort((a, b) => b.date.localeCompare(a.date))
 
@@ -14,88 +31,119 @@ export default function Home() {
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 895, margin: '0 auto', padding: '40px 24px 80px' }}>
+      <div style={{ maxWidth: 895, margin: '0 auto', padding: '24px 24px 80px' }}>
 
-        {/* ── Header ─────────────────────────────────────────────────────── */}
-        <header style={{ marginBottom: 32, borderBottom: '1px solid var(--rule)', paddingBottom: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-            <h1 style={{
-              margin: 0,
-              fontSize: '1em',
-              fontWeight: 400,
-              fontFamily: 'var(--font-serif)',
-              color: 'var(--ink)',
-            }}>
-              Dmytro Petryshchuk
-            </h1>
-            <nav style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '0.65em',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              display: 'flex',
-              gap: 18,
-              flexWrap: 'wrap',
-            }}>
-              {([
-                ['/about',    'About'     ],
-                ['/projects', 'Projects'  ],
-                ['/library',  'Library'   ],
-                ['/writing',  'Newsletter'],
-              ] as const).map(([href, label]) => (
-                <Link key={href} href={href} style={{
-                  color: 'var(--ink-faint)',
-                  textDecoration: 'none',
-                }}>
-                  {label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <p style={{
-            margin: '8px 0 0',
-            fontSize: '0.85em',
-            color: 'var(--ink-soft)',
-            fontStyle: 'italic',
+        {/* ── Logo + Nav ─────────────────────────────────────────────────────── */}
+        <div style={{ display: 'flex', marginBottom: 28 }}>
+          <div style={{
+            width: 64, height: 64, flexShrink: 0,
+            border: '1px solid var(--ink)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '2.4em',
+            color: 'var(--ink)',
+            userSelect: 'none',
           }}>
-            Writing about consciousness, craft, and building things.
-          </p>
-        </header>
-
-        {/* ── Essay index ─────────────────────────────────────────────────── */}
-        <div className="essay-index-grid">
-          {folders.map(folder => (
-            <div key={folder} style={{ marginBottom: 28 }}>
-              <div style={{
+            𝔇
+          </div>
+          <nav style={{ display: 'flex', flex: 1, flexWrap: 'wrap' }}>
+            {([
+              ['/',           'Site'      ],
+              ['/about',      'Me'        ],
+              ['/projects',   'Projects'  ],
+              ['/library',    'Library'   ],
+              ['/writing',    'Newsletter'],
+            ] as const).map(([href, label]) => (
+              <Link key={href} href={href} style={{
+                height: 64,
+                padding: '0 20px',
+                display: 'flex', alignItems: 'center',
+                border: '1px solid var(--rule)',
+                marginLeft: '-1px',
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.6em',
-                fontWeight: 700,
-                letterSpacing: '0.14em',
+                fontSize: '0.65em',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: 'var(--ink-faint)',
-                marginBottom: 6,
+                color: 'var(--ink-soft)',
+                textDecoration: 'none',
               }}>
-                {folder}
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* ── Intro ──────────────────────────────────────────────────────────── */}
+        <p style={{ margin: '0 0 1.6em', lineHeight: 1.65 }}>
+          This is the website of <strong>Dmytro Petryshchuk</strong>. I write about
+          consciousness, craft, and building things.
+        </p>
+
+        {/* ── Three-column index ─────────────────────────────────────────────── */}
+        <div className="home-columns">
+
+          {/* Recent */}
+          <div>
+            <SectionHeader>Recent</SectionHeader>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+              {essays.map(essay => (
+                <li key={`${essay.folder}/${essay.slug}`} style={{ display: 'flex', gap: 8, alignItems: 'baseline', marginBottom: 6 }}>
+                  <span aria-hidden="true" style={{ color: 'var(--ink-faint)', fontSize: '0.78em', flexShrink: 0, lineHeight: 1.6 }}>◈</span>
+                  <Link href={`/essays/${essay.folder}/${essay.slug}`} style={{
+                    fontSize: '0.92em',
+                    fontStyle: essay.status === 'draft' ? 'italic' : 'normal',
+                    color: essay.status === 'draft' ? 'var(--ink-faint)' : 'var(--accent)',
+                  }}>
+                    {essay.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* By Topic */}
+          <div>
+            <SectionHeader>By Topic</SectionHeader>
+            {folders.map(folder => (
+              <div key={folder} style={{ marginBottom: 20 }}>
+                <div style={{
+                  fontSize: '0.62em', fontWeight: 700,
+                  fontFamily: 'var(--font-sans)',
+                  letterSpacing: '0.12em', textTransform: 'uppercase',
+                  color: 'var(--ink-faint)', marginBottom: 6,
+                }}>
+                  {folder}
+                </div>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  {byFolder[folder].map(essay => (
+                    <li key={essay.slug} style={{ display: 'flex', gap: 8, alignItems: 'baseline', marginBottom: 6 }}>
+                      <span aria-hidden="true" style={{ color: 'var(--ink-faint)', fontSize: '0.78em', flexShrink: 0, lineHeight: 1.6 }}>✦</span>
+                      <Link href={`/essays/${essay.folder}/${essay.slug}`} style={{ fontSize: '0.92em' }}>
+                        {essay.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                {byFolder[folder].map(essay => (
-                  <li key={essay.slug} style={{ margin: '2px 0' }}>
-                    <Link
-                      href={`/essays/${essay.folder}/${essay.slug}`}
-                      className="essay-index-link"
-                      style={{
-                        color: essay.status === 'draft' ? 'var(--ink-faint)' : 'var(--ink-soft)',
-                        fontStyle: essay.status === 'draft' ? 'italic' : 'normal',
-                      }}
-                    >
-                      {essay.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* About */}
+          <div>
+            <SectionHeader>About</SectionHeader>
+            <p style={{ fontSize: '0.9em', lineHeight: 1.65, margin: '0 0 0.85em' }}>
+              Entrepreneur, engineer, writer. Founder of{' '}
+              <a href="https://onekeyflow.com">OneKeyFlow</a>, an AI automation agency.
+            </p>
+            <p style={{ fontSize: '0.9em', lineHeight: 1.65, margin: '0 0 0.85em' }}>
+              Previously embedded software at Midtronics, AI research at FairQuanta.
+              UIUC graduate.
+            </p>
+            <p style={{ margin: 0 }}>
+              <Link href="/about" style={{ fontSize: '0.85em' }}>Full bio →</Link>
+            </p>
+          </div>
+
         </div>
 
       </div>

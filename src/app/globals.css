@@ -158,25 +158,13 @@ a:visited { color: var(--visited); }
   border-radius: 2px;
 }
 
-/* ── Essay index (homepage) ────────────────────────────────────────────────── */
+/* ── Homepage ──────────────────────────────────────────────────────────────── */
 
-.essay-index-grid {
+.home-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 48px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 40px;
   align-items: start;
-}
-
-.essay-index-link {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color 0.1s, border-color 0.1s;
-}
-
-.essay-index-link:hover {
-  color: var(--accent-hover);
-  border-bottom-color: var(--accent-hover);
 }
 
 /* ── Smooth scroll ─────────────────────────────────────────────────────────── */
@@ -188,8 +176,9 @@ html { scroll-behavior: smooth; }
 @media (max-width: 640px) {
   html, body { font-size: 18px; }
 
-  .essay-index-grid {
+  .home-columns {
     grid-template-columns: 1fr;
+    gap: 32px 0;
   }
 
   .essay-sidebar {
