@@ -1,49 +1,126 @@
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { projects } from '@/data/projects'
+import { getEssay, formatEssayDate } from '@/lib/essays'
+import type { TocEntry } from '@/lib/essays'
+
+function Toc({ entries }: { entries: TocEntry[] }) {
+  return (
+    <nav aria-label="Table of contents" style={{ fontSize: '0.82em', lineHeight: 1.9 }}>
+      {entries.map(entry => (
+        <div key={entry.id} style={{
+          paddingLeft: (entry.level - 1) * 14,
+          display: 'flex',
+          gap: 8,
+          alignItems: 'baseline',
+        }}>
+          <span style={{
+            color: 'var(--ink-faint)',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.9em',
+            flexShrink: 0,
+            minWidth: 28,
+          }}>
+            {entry.number}
+          </span>
+          <a href={`#${entry.id}`} style={{
+            fontWeight: entry.level === 1 ? 700 : 400,
+            color: entry.level === 1 ? 'var(--ink)' : 'var(--ink-soft)',
+            textDecoration: 'none',
+          }}>
+            {entry.text}
+          </a>
+        </div>
+      ))}
+    </nav>
+  )
+}
 
 export default function ProjectsPage() {
-  const work = projects.filter(p => p.category === 'work')
-  const experiments = projects.filter(p => p.category === 'experiment')
+  const essay = getEssay('projects', 'projects')
+  if (!essay) notFound()
+
+  const hasToc = essay.toc.length > 0
+  const hasAbstract = !!essay.abstract
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 700, margin: '0 auto', padding: '20px 32px 80px' }}>
+      <div style={{ maxWidth: 680, margin: '0 auto', padding: '20px 24px 80px' }}>
 
-        {[{ label: 'Work', items: work }, { label: 'Experiments', items: experiments }].map(({ label, items }) => (
-          <div key={label} style={{ marginBottom: 48 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, fontFamily: 'var(--font-sans)', color: 'var(--ink-faint)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 20 }}>
-              {label}
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-              {items.map(p => (
-                <div key={p.id} style={{ paddingLeft: 14, borderLeft: '2px solid var(--rule)' }}>
-                  <div style={{ marginBottom: p.bullets.length > 0 ? 6 : 0 }}>
-                    <span style={{ fontSize: 16, fontWeight: 600, fontFamily: 'var(--font-sans)', color: 'var(--ink)' }}>
-                      {p.name}
-                    </span>
-                    {p.role && (
-                      <span style={{ fontSize: 13, color: 'var(--ink-faint)', marginLeft: 8, fontFamily: 'var(--font-sans)' }}>
-                        · {p.role}
-                      </span>
-                    )}
-                    {p.dates && (
-                      <span style={{ fontSize: 12, color: 'var(--ink-faint)', marginLeft: 6, fontFamily: 'var(--font-sans)' }}>
-                        {p.dates}
-                      </span>
-                    )}
-                  </div>
-                  {p.bullets.length > 0 && (
-                    <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.7 }}>
-                      {p.bullets.map((b, i) => (
-                        <li key={i} style={{ marginBottom: 3 }}>{b}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
+        {/* ── Header ──────────────────────────────────────────────────────────── */}
+        <header style={{ textAlign: 'center', marginBottom: 28 }}>
+          <h1 style={{
+            fontFamily: 'var(--font-serif)',
+            fontVariant: 'small-caps',
+            fontSize: '2.2em',
+            fontWeight: 700,
+            lineHeight: 1.2,
+            color: 'var(--ink)',
+            margin: '0 0 0.45em',
+          }}>
+            {essay.title}
+          </h1>
+
+          {essay.description && (
+            <p style={{
+              margin: '0 0 0.7em',
+              fontStyle: 'italic',
+              fontSize: '0.97em',
+              lineHeight: 1.55,
+              color: 'var(--ink-soft)',
+            }}>
+              {essay.description}
+            </p>
+          )}
+
+          <p style={{
+            margin: 0,
+            fontSize: '0.75em',
+            fontFamily: 'var(--font-sans)',
+            color: 'var(--ink-faint)',
+            letterSpacing: '0.02em',
+          }}>
+            {formatEssayDate(essay.date)}
+            {essay.status !== 'finished' && <span> · {essay.status}</span>}
+          </p>
+        </header>
+
+        {/* ── TOC + Abstract ──────────────────────────────────────────────────── */}
+        {(hasToc || hasAbstract) ? (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: hasToc && hasAbstract ? '2fr 3fr' : '1fr',
+            gap: 20,
+            marginBottom: 36,
+          }}>
+            {hasToc && <Toc entries={essay.toc} />}
+            {hasAbstract && (
+              <div style={{
+                border: '1px solid var(--rule)',
+                background: 'var(--paper-deep)',
+                padding: '16px 20px',
+                fontSize: '0.95em',
+                lineHeight: 1.65,
+                fontStyle: 'italic',
+                color: 'var(--ink)',
+              }}>
+                {essay.abstract}
+              </div>
+            )}
           </div>
-        ))}
+        ) : (
+          <div style={{
+            border: '1px solid var(--rule)',
+            background: 'var(--paper-deep)',
+            height: 24,
+            marginBottom: 36,
+          }} />
+        )}
+
+        {/* ── Body ────────────────────────────────────────────────────────────── */}
+        <div
+          className="article-body"
+          dangerouslySetInnerHTML={{ __html: essay.content }}
+        />
 
       </div>
     </div>

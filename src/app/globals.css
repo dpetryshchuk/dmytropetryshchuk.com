@@ -158,6 +158,19 @@ a:visited { color: var(--visited); }
   border-radius: 2px;
 }
 
+/* ── Site logo ─────────────────────────────────────────────────────────────── */
+
+.site-logo {
+  color: var(--ink-faint);
+  border-color: var(--rule);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.site-logo:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
 /* ── Homepage ──────────────────────────────────────────────────────────────── */
 
 .home-columns {

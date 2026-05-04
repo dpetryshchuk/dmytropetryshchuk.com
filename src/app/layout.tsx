@@ -33,12 +33,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
         <div style={{ maxWidth: 895, margin: '0 auto', padding: '24px 24px 0' }}>
           <div style={{ display: 'flex', marginBottom: 28 }}>
-            <Link href="/" style={{
+            <Link href="/" className="site-logo" style={{
               width: 64, height: 64, flexShrink: 0,
-              border: '1px solid var(--ink)',
+              border: '1px solid',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: '2.4em',
-              color: 'var(--ink)',
               textDecoration: 'none',
               userSelect: 'none',
             }}>
