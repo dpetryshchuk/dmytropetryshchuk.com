@@ -177,3 +177,27 @@ details[open] > summary .section-arrow {
     top: 12px !important;
   }
 }
+
+/* Essay index grid (homepage) */
+.essay-index-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .essay-index-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.essay-index-link {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.essay-index-link:hover {
+  border-bottom-color: currentColor;
+}
