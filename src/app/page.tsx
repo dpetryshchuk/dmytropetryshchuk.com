@@ -33,12 +33,6 @@ export default function Home() {
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
       <div style={{ maxWidth: 895, margin: '0 auto', padding: '0 24px 80px' }}>
 
-        {/* ── Intro ──────────────────────────────────────────────────────────── */}
-        <p style={{ margin: '0 0 1.6em', lineHeight: 1.65 }}>
-          This is the website of <strong>Dmytro Petryshchuk</strong>. I write about
-          consciousness, craft, and building things.
-        </p>
-
         {/* ── Three-column index ─────────────────────────────────────────────── */}
         <div className="home-columns">
 
