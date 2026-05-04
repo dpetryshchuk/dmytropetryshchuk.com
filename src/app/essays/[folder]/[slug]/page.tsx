@@ -124,14 +124,7 @@ export default async function EssayPage({ params }: { params: Promise<{ folder: 
               </div>
             )}
           </div>
-        ) : (
-          <div style={{
-            border: '1px solid var(--rule)',
-            background: 'var(--paper-deep)',
-            height: 24,
-            marginBottom: 36,
-          }} />
-        )}
+        ) : null}
 
         {/* ── Body ────────────────────────────────────────────────────────────── */}
         <div
