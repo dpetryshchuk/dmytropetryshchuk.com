@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav style={{ display: 'flex', flexWrap: 'wrap' }}>
               {([
                 ['/me',         'Me',          false],
-                ['/projects',   'Projects',    false],
+                ['/projects',   'Work',        false],
                 ['/library',    'Library',     false],
                 ['https://building-log.beehiiv.com', 'Newsletter', true],
               ] as const).map(([href, label, external]) => (

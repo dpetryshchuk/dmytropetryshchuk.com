@@ -36,10 +36,14 @@ export default function Home() {
 
         {/* ── Intro ──────────────────────────────────────────────────────────── */}
         <p style={{ margin: '0 0 1.6em', lineHeight: 1.65 }}>
-          Hey, I&apos;m <strong>Dmytro (or Dima)</strong>. This is my site where I write and host some ideas about
-          philosophy, business, and craft.
+          Hey, I&apos;m <strong>Dmytro (or Dima)</strong>. I write about philosophy, business, and craft.
+          <br />
           <br />
           Find my full bio <Link href="/me">here</Link>.
+          <br />
+          My work history <Link href="/projects">here</Link>.
+          <br />
+          My GitHub is <a href="https://github.com/dpetryshchuk" target="_blank" rel="noopener noreferrer">here</a>.
           <br />
           Email me at <EmailCopy />.
         </p>
@@ -91,14 +95,6 @@ export default function Home() {
                 </ul>
               </div>
             ))}
-          </div>
-
-          {/* About */}
-          <div>
-            <SectionHeader>About</SectionHeader>
-            <p style={{ margin: 0 }}>
-              <Link href="/me" style={{ fontSize: '0.85em' }}>Full bio</Link>
-            </p>
           </div>
 
         </div>

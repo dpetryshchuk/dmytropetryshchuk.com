@@ -1,5 +1,5 @@
 ---
-title: "Projects"
+title: "Work"
 date: "2026-05-04"
 tags: ["meta"]
 abstract: "This is basically a resume blob split into work as well as side-projecst I've worked on."
