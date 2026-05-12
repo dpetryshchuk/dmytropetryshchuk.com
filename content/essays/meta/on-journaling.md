@@ -28,7 +28,7 @@ There’s a few journaling practices I want to document on this page for referen
   - Based on a home page with goals, affirmations, future visualization, and a question bank.
   - You check this page every morning and then use that reminder of your direction as a launching off point to be in a clearer headspace. 
 
-Daily journaling is powerful because of its mindset setting abilities. Starting the morning moving toward a direction that you want is powerful. [[Small actions compound]] is the core idea, in that we’re able [[take small actions toward our goals]]. 
+Daily journaling is powerful because of its mindset setting abilities. Starting the morning moving toward a direction that you want is powerful. [[Small actions compound]] is the core idea, in that we’re able take small actions toward our goals. 
 
 # Format
 
