@@ -8,7 +8,6 @@ status: in-progress
 ---
 # On Daily Journaling Practices
 
-
 There’s a few journaling practices I want to document on this page for reference.
 
 - The Tim Ferris 
