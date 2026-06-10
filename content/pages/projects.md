@@ -10,9 +10,9 @@ status: "in-progress"
 
 ### OneKeyFlow
 
-**Founder · Feb 2026 – Present**
+**Freelance Engineer · Feb 2026 – Present**
 
-AI automation agency. I help businesses use AI to eliminate slow manual work — building internal tools, workflows, and integrations.
+Freelance AI automation engineer. I help businesses use AI to eliminate slow manual work — building internal tools, workflows, and integrations.
 
 - Built an automation for a $45m/yr ecommerce company that turned a 23-hour manual process into a few minutes, generating financial reports across 70+ SKUs.
 - Integrated a CRM into lead capture for a $2M/yr auto-transport logistics company.

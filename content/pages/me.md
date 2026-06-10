@@ -8,7 +8,7 @@ status: "finished"
 
 Hi, I'm **Dmytro Petryshchuk** (or Dima), an entrepreneur, engineer, writer, and worldbuilding nerd.
 
-I'm the founder of [OneKeyFlow](https://www.onekeyflow.com), an AI automation agency where I help businesses use AI, build internal tools, and automate the slow manual work holding them back. Clients include a $45m/yr ecommerce company, a $3m/yr semiconductor fab, and a $2m/yr auto transport logistics company.
+I'm a freelance AI automation engineer ([OneKeyFlow](https://www.onekeyflow.com)), helping businesses use AI, build internal tools, and automate the slow manual work holding them back. Clients include a $45m/yr ecommerce company, a $3m/yr semiconductor fab, and a $2m/yr auto transport logistics company.
 
 I worked at [Midtronics](https://www.midtronics.com), a $100M/yr battery technology company that develops next-generation charging, discharging, and testing equipment. There I spent three years as an embedded software engineer building these systems.
 
