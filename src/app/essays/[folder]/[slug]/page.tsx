@@ -40,7 +40,8 @@ function Toc({ entries }: { entries: TocEntry[] }) {
 }
 
 export default async function EssayPage({ params }: { params: Promise<{ folder: string; slug: string }> }) {
-  const { folder, slug } = await params
+  const { folder: rawFolder, slug } = await params
+  const folder = decodeURIComponent(rawFolder)
   const essay = getEssay(folder, slug)
   if (!essay) notFound()
 

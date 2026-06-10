@@ -70,32 +70,22 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* By Topic */}
-          <div>
-            <SectionHeader>By Topic</SectionHeader>
-            {folders.map(folder => (
-              <div key={folder} style={{ marginBottom: 20 }}>
-                <div style={{
-                  fontSize: '0.62em', fontWeight: 700,
-                  fontFamily: 'var(--font-sans)',
-                  letterSpacing: '0.12em', textTransform: 'uppercase',
-                  color: 'var(--ink-faint)', marginBottom: 6,
-                }}>
-                  {folder}
-                </div>
-                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                  {byFolder[folder].map(essay => (
-                    <li key={essay.slug} style={{ display: 'flex', gap: 8, alignItems: 'baseline', marginBottom: 6 }}>
-                      <span aria-hidden="true" style={{ color: 'var(--ink-faint)', fontSize: '0.78em', flexShrink: 0, lineHeight: 1.6 }}>✦</span>
-                      <Link href={`/essays/${essay.folder}/${essay.slug}`} style={{ fontSize: '0.92em' }}>
-                        {essay.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          {/* One column per folder */}
+          {folders.map(folder => (
+            <div key={folder}>
+              <SectionHeader>{folder}</SectionHeader>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                {byFolder[folder].map(essay => (
+                  <li key={essay.slug} style={{ display: 'flex', gap: 8, alignItems: 'baseline', marginBottom: 6 }}>
+                    <span aria-hidden="true" style={{ color: 'var(--ink-faint)', fontSize: '0.78em', flexShrink: 0, lineHeight: 1.6 }}>✦</span>
+                    <Link href={`/essays/${essay.folder}/${essay.slug}`} style={{ fontSize: '0.92em' }}>
+                      {essay.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
         </div>
 
